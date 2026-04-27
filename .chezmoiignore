@@ -1,0 +1,77 @@
+# ===== Common: Defensive (never track nested git working trees) =====
+**/.git
+**/.git/**
+
+# ===== Common: Secrets =====
+**/.credentials.json
+**/credentials.json
+**/.npmrc
+**/hosts.yml
+.config/gh
+.config/github-copilot
+.config/coderabbit
+.config/gcloud
+
+# ===== Common: Shell history / state =====
+.bash_history
+.lesshst
+.mysql_history
+.python_history
+.sqlite_history
+.viminfo
+.wget-hsts
+
+# ===== Common: Claude Code (excluded for now) =====
+.claude
+.config/nvim/.claude
+
+# ===== Common: GUI app caches / state =====
+.config/Code
+.config/Electron
+.config/chromium
+.config/google-chrome
+.config/configstore
+.config/dconf
+.config/gtk-3.0
+.config/menus
+.config/pulse
+.config/procps
+.config/libreoffice
+.config/mimeapps.list
+
+# ===== Common: Project / tool caches =====
+.config/astro
+.config/.wrangler
+.config/simple-update-notifier
+.config/go
+.config/fish
+.config/bash-it
+.config/uv/uv-receipt.json
+
+# ===== OS-specific =====
+{{- if ne .chezmoi.os "windows" }}
+# Linux/macOS: skip Windows-only files
+Documents
+.config/wezterm
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" }}
+# Windows: skip Linux/Unix-only files
+.bashrc
+.profile
+.inputrc
+.zshrc
+.tmux.conf
+.gitconfig
+.config/nvim
+.config/tmux
+.config/tmux.conf
+.config/lazygit
+.config/lazydocker
+.config/gh-dash
+.config/ccstatusline
+.config/bash-it
+.config/uv
+.config/git
+.gitconfig
+{{- end }}

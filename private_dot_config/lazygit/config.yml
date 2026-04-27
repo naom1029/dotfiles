@@ -1,0 +1,53 @@
+gui:
+  # VS Code の Source Control に近い「左: リスト / 右: 詳細」
+  sidePanelWidth: 0.30
+  mainPanelSplitMode: flexible
+  enlargedSideViewLocation: left
+  screenMode: normal
+  # VS Code っぽくフラット寄りにする
+  border: single
+  showFileTree: true
+  showRootItemInFileTree: false
+  fileTreeSortOrder: foldersFirst
+  showListFooter: false
+  showPanelJumps: false
+  showRandomTip: false
+  commandLogSize: 4
+  # VS Code Explorer 風のアイコン
+  nerdFontsVersion: "3"
+  showFileIcons: true
+  # VS Code Dark+ / workbench 風
+  theme:
+    activeBorderColor:
+      - "#007acc"
+      - bold
+    inactiveBorderColor:
+      - "#3c3c3c"
+    searchingActiveBorderColor:
+      - "#3794ff"
+      - bold
+    optionsTextColor:
+      - "#3794ff"
+    # VS Code の list.activeSelectionBackground に近い
+    selectedLineBgColor:
+      - "#04395e"
+    # inactive selection 風
+    inactiveViewSelectedLineBgColor:
+      - "#37373d"
+    defaultFgColor:
+      - "#cccccc"
+    # Git modified / warning っぽい色
+    unstagedChangesColor:
+      - "#cca700"
+    cherryPickedCommitFgColor:
+      - "#cccccc"
+    cherryPickedCommitBgColor:
+      - "#264f78"
+    markedBaseCommitFgColor:
+      - "#cccccc"
+    markedBaseCommitBgColor:
+      - "#5a5d5e"
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --features=zebra-dark

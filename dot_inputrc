@@ -1,0 +1,7 @@
+# Enable vi mode
+set editing-mode vi
+
+# Show vi mode in prompt with cursor shape
+set show-mode-in-prompt on
+set vi-ins-mode-string \1\e[6 q\2(ins)
+set vi-cmd-mode-string \1\e[2 q\2(cmd)
