@@ -107,6 +107,13 @@
 | **hardtime.nvim** | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
 | vim-sleuth        | インデント自動検出             | 自動有効                                                                                     |
 
+### Markdown
+
+| プラグイン              | 説明                           | 主要コマンド/キーマップ                          |
+| ----------------------- | ------------------------------ | ------------------------------------------------ |
+| markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>tp` - プレビュートグル                  |
+| **render-markdown.nvim** | Markdown バッファ内リッチ描画 | `<leader>tm` - 描画トグル                        |
+
 ## キーマップ
 
 ### グローバルキーマップ
@@ -201,6 +208,11 @@
 
 プロジェクトルートに `.vscode/launch.json` または `.nvim.lua` を配置すると、プロジェクト固有のデバッグ設定を使用できます。
 詳細は `lua/plugins/dap/cpp.lua` のコメントを参照。
+
+#### Markdown
+
+- `<leader>tp` - Markdown ブラウザプレビューのトグル (markdown-preview)
+- `<leader>tm` - Markdown バッファ内描画のトグル (render-markdown)
 
 #### テキスト操作 (nvim-surround)
 
