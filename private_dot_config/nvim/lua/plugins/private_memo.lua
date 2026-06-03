@@ -11,7 +11,13 @@ return {
     'nvim-telescope/telescope.nvim',
     'nvim-lua/plenary.nvim',
   },
+  cmd = { 'MemoToday' },
   keys = {
+    {
+      '<leader>md',
+      '<cmd>MemoToday<cr>',
+      desc = 'Open today\'s 予実 memo',
+    },
     {
       '<leader>mn',
       function()
@@ -74,5 +80,28 @@ return {
     require('memo').setup({
       memo_dir = memo_dir,
     })
+
+    -- 今日の予実メモ（日次1ファイル）を開く。無ければ予定/実績テンプレ付きで作成
+    vim.api.nvim_create_user_command('MemoToday', function()
+      local daily_dir = vim.fn.expand(memo_dir) .. '/daily'
+      vim.fn.mkdir(daily_dir, 'p')
+
+      local date = os.date('%Y-%m-%d')
+      local filepath = daily_dir .. '/' .. date .. '.md'
+      local is_new = vim.fn.filereadable(filepath) == 0
+
+      vim.cmd('edit ' .. vim.fn.fnameescape(filepath))
+
+      if is_new then
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, {
+          '# ' .. date,
+          '',
+          '## 予定',
+          '',
+          '## 実績',
+          '',
+        })
+      end
+    end, { desc = 'Open today\'s 予実 memo' })
   end,
 }

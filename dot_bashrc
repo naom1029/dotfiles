@@ -159,3 +159,6 @@ __wezterm_osc7() {
     printf '\e]7;file://%s%s\e\\' "$(hostname)" "$(pwd)"
 }
 [[ "$PROMPT_COMMAND" != *__wezterm_osc7* ]] && PROMPT_COMMAND="__wezterm_osc7;${PROMPT_COMMAND}"
+
+# 今日の予実メモを開く (nvim memo.nvim / :MemoToday)
+alias memo='nvim +MemoToday'

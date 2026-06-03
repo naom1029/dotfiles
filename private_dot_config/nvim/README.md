@@ -101,7 +101,7 @@
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
 | toggleterm.nvim   | ターミナルトグル               | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |
-| **memo.nvim**     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索                                           |
+| **memo.nvim**     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索<br>`<leader>md` - 今日の予実メモ              |
 | **nvim-rooter**   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
 | **auto-session**  | セッション自動保存/復元        | 自動有効<br>`<leader>ps` - セッション検索<br>`<leader>pd` - セッション削除                   |
 | **hardtime.nvim** | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
@@ -232,8 +232,11 @@
 - `<leader>mn` - 新規メモを作成（カテゴリ選択 → タイムスタンプ形式ファイル）
 - `<leader>mm` - メモをファイル名で検索（サブディレクトリ含む）
 - `<leader>mg` - メモを内容でgrep検索
+- `<leader>md` - 今日の予実メモを開く（日次1ファイル。無ければ予定/実績テンプレ付きで作成）
 
 **カテゴリ:** work, personal, idea（`~/.memo/{category}/` に保存）
+
+**予実メモ:** `~/.memo/daily/YYYY-MM-DD.md`（1日1ファイル）。`:MemoToday` コマンドでも開ける。シェルから一発で開きたい場合は `~/.bashrc` に `alias memo='nvim +MemoToday'` を追加。
 
 ### Claude Code
 

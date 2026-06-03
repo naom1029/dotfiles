@@ -9,15 +9,20 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
+	features = zebra-dark
 	dark = true
-	line-numbers = true
+	side-by-side = true
+	line-numbers = false
+	file-decoration-style = brightblue ul
 	hyperlinks = true
 	hyperlinks-file-link-format = "lazygit-edit://{path}:{line}"
-	paging = never
 	merge-conflict-begin-symbol = ""
 	merge-conflict-end-symbol = ""
 	merge-conflict-ours-diff-header-style = omit
 	merge-conflict-theirs-diff-header-style = omit
+	file-style = brightblue bold
+	hunk-header-style = file line-number syntax
+	navigate = true
 [merge]
 	conflictstyle = zdiff3
 [credential "https://github.com"]
@@ -32,7 +37,12 @@
 {{- end }}
 [rerere]
 	enabled = true
+
+[includeIf "gitdir:~/.config/nvim"]
+	path = ./gitconfig-personal
 [init]
 	defaultBranch = main
 [fetch]
 	prune = true
+[include]
+	path = ~/.config/delta/themes.gitconfig

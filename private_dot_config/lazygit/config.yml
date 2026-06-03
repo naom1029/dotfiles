@@ -1,22 +1,11 @@
 gui:
-  # VS Code の Source Control に近い「左: リスト / 右: 詳細」
-  sidePanelWidth: 0.30
-  mainPanelSplitMode: flexible
-  enlargedSideViewLocation: left
-  screenMode: normal
-  # VS Code っぽくフラット寄りにする
   border: single
-  showFileTree: true
   showRootItemInFileTree: false
-  fileTreeSortOrder: foldersFirst
   showListFooter: false
-  showPanelJumps: false
   showRandomTip: false
+  showNumstatInFilesView: true
   commandLogSize: 4
-  # VS Code Explorer 風のアイコン
   nerdFontsVersion: "3"
-  showFileIcons: true
-  # VS Code Dark+ / workbench 風
   theme:
     activeBorderColor:
       - "#007acc"
@@ -48,6 +37,12 @@ gui:
     markedBaseCommitBgColor:
       - "#5a5d5e"
 git:
+  autoFetch: true
+  fetchAll: true
   pagers:
     - colorArg: always
-      pager: delta --paging=never --features=zebra-dark
+      pager: delta --paging=never
+  log:
+    showGraph: always
+    showWholeGraph: false
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --'
