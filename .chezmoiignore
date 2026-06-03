@@ -1,3 +1,6 @@
+# ===== Repo meta (do not deploy to home) =====
+/README.md
+
 # ===== Common: Defensive (never track nested git working trees) =====
 **/.git
 **/.git/**

@@ -1,0 +1,8 @@
+{{- $name := promptStringOnce . "git.name" "Git user name" -}}
+{{- $email := promptStringOnce . "git.email" "Git email" -}}
+{{- $safeDirectory := promptStringOnce . "git.safeDirectory" "Git safe.directory (任意・不要なら空Enter)" "" -}}
+
+[data.git]
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}
+    safeDirectory = {{ $safeDirectory | quote }}
