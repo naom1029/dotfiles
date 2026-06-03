@@ -1,6 +1,9 @@
 # ===== Repo meta (do not deploy to home) =====
 /README.md
 
+# ===== Third-party plugins (managed by tpm, not chezmoi) =====
+.config/tmux/plugins
+
 # ===== Common: Defensive (never track nested git working trees) =====
 **/.git
 **/.git/**
@@ -64,11 +67,9 @@ Documents
 .profile
 .inputrc
 .zshrc
-.tmux.conf
 .gitconfig
 .config/nvim
 .config/tmux
-.config/tmux.conf
 .config/lazygit
 .config/lazydocker
 .config/gh-dash
