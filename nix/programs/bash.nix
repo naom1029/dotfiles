@@ -78,7 +78,9 @@
       __wezterm_osc7() {
           printf '\e]7;file://%s%s\e\\' "$(hostname)" "$(pwd)"
       }
-      [[ "$PROMPT_COMMAND" != *__wezterm_osc7* ]] && PROMPT_COMMAND="__wezterm_osc7;''${PROMPT_COMMAND}"
+      if [[ "$PROMPT_COMMAND" != *__wezterm_osc7* ]]; then
+        PROMPT_COMMAND="__wezterm_osc7''${PROMPT_COMMAND:+;''${PROMPT_COMMAND}}"
+      fi
     '';
   };
 
