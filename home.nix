@@ -14,6 +14,7 @@
     ./nix/programs/git.nix
     ./nix/programs/git-hooks.nix
     ./nix/programs/herdr.nix
+    ./nix/programs/jj.nix
     ./nix/programs/lazygit.nix
     ./nix/programs/neovim.nix
     ./nix/programs/tmux.nix
