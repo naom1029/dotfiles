@@ -14,10 +14,15 @@
     vivid
     zoxide
 
+    # python
+    uv
+    pipx
+
     # development
     ghq
     gh-dash
     online-judge-tools
+    claude-code
 
     # monitoring
     btop

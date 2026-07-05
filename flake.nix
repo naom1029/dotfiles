@@ -14,7 +14,10 @@
     let
       username = "naom1029";
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
