@@ -16,10 +16,13 @@ git clone https://github.com/naom1029/dotfiles.git ~/src/github.com/naom1029/dot
 cd ~/src/github.com/naom1029/dotfiles
 
 # 4. home-manager で適用
-nix run nixpkgs#home-manager -- switch --flake .#naom1029 -b bak
+nix run nixpkgs#home-manager -- switch --flake . --impure -b bak
 ```
 
 これだけで全ツール・全設定が一発で入ります。
+
+> **Note**: ユーザー名は実行時の `$USER` から動的に解決するため `--impure` が必須です。
+> ユーザー名がリポジトリにハードコードされていないので、任意の Linux ユーザーでそのまま使えます。
 
 ## リポジトリ構成
 
@@ -65,7 +68,7 @@ ripgrep, fd, bat, eza, jq, tree, dust, trash-cli, vivid, zoxide, ghq, gh-dash, o
 
 | やりたいこと | コマンド |
 |---|---|
-| 設定を適用 | `nix run nixpkgs#home-manager -- switch --flake .#naom1029` |
+| 設定を適用 | `nix run nixpkgs#home-manager -- switch --flake . --impure` |
 | パッケージ追加 | `nix/programs/tools.nix` に追記して上記を実行 |
 | flake入力を更新 | `nix flake update` |
 | 差分確認 | `git diff` |
