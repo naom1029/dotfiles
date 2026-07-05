@@ -63,8 +63,10 @@
       # git worktree + fzf (select & cd)
       function wtcd() {
         local wt
-        wt=$(git wt --json 2>/dev/null | jq -r '.[].path' \
-          | fzf --preview 'git -C {} log --oneline -10 --color=always 2>/dev/null') && cd "$wt"
+        wt=$(git wt --json 2>/dev/null | jq -r '.[] | "\(.path) (\(.branch))\t\(.path)"' \
+          | fzf --delimiter '\t' --with-nth 1 \
+              --preview 'git -C {2} log --oneline -10 --color=always 2>/dev/null' \
+          | cut -f2) && cd "$wt"
       }
 
       # git switch branch with fzf
