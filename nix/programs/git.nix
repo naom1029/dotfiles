@@ -7,6 +7,7 @@
       "**/.claude/settings.local.json"
     ];
     includes = [
+      { path = "~/.config/git/local.gitconfig"; }
       {
         condition = "hasconfig:remote.*.url:**/naom1029/**";
         contents.user = {
@@ -21,7 +22,6 @@
           email = "56006010+naom1029@users.noreply.github.com";
         };
       }
-      { path = "~/.config/git/local.gitconfig"; }
     ];
     settings = {
       core = {
