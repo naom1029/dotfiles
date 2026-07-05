@@ -9,6 +9,7 @@
 
   imports = [
     ./nix/programs/bash.nix
+    ./nix/programs/claude-code.nix
     ./nix/programs/direnv.nix
     ./nix/programs/git.nix
     ./nix/programs/git-hooks.nix
