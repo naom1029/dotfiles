@@ -10,16 +10,22 @@
       { path = "~/.config/git/local.gitconfig"; }
       {
         condition = "hasconfig:remote.*.url:**/naom1029/**";
-        contents.user = {
-          name = "naom1029";
-          email = "56006010+naom1029@users.noreply.github.com";
+        contents = {
+          user = {
+            name = "naom1029";
+            email = "56006010+naom1029@users.noreply.github.com";
+          };
+          credential."https://github.com".username = "naom1029";
         };
       }
       {
         condition = "hasconfig:remote.*.url:**:naom1029/**";
-        contents.user = {
-          name = "naom1029";
-          email = "56006010+naom1029@users.noreply.github.com";
+        contents = {
+          user = {
+            name = "naom1029";
+            email = "56006010+naom1029@users.noreply.github.com";
+          };
+          credential."https://github.com".username = "naom1029";
         };
       }
     ];
