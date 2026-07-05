@@ -44,8 +44,8 @@ return {
 		-- コマンドパレット表示
 		{ key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
 		-- Tab移動
-		{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-		{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
+		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 		-- Tab入れ替え
 		{ key = "{", mods = "LEADER", action = act({ MoveTabRelative = -1 }) },
 		-- Tab新規作成
