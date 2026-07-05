@@ -6,11 +6,17 @@
     ignores = [
       "**/.claude/settings.local.json"
     ];
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:**/naom1029/**";
+        contents.user = {
+          name = "naom1029";
+          email = "56006010+naom1029@users.noreply.github.com";
+        };
+      }
+      { path = "~/.config/git/local.gitconfig"; }
+    ];
     settings = {
-      user = {
-        name = "naom1029";
-        email = "56006010+naom1029@users.noreply.github.com";
-      };
       core = {
         ignorecase = false;
         editor = "vim";
@@ -61,6 +67,7 @@
       column.ui = "auto";
       help.autocorrect = "prompt";
       include.path = "~/.config/delta/themes.gitconfig";
+      user.useConfigOnly = true;
     };
   };
 
