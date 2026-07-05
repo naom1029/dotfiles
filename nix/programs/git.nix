@@ -16,6 +16,7 @@
         editor = "vim";
         quotepath = false;
       };
+      color.ui = "auto";
       push = {
         autoSetupRemote = true;
         useForceIfIncludes = true;
@@ -34,6 +35,7 @@
       diff = {
         algorithm = "histogram";
         colorMoved = "plain";
+        mnemonicPrefix = true;
         renames = true;
       };
       rerere = {
@@ -41,9 +43,15 @@
         autoupdate = true;
       };
       init.defaultBranch = "main";
+      tag.sort = "version:refname";
       fetch = {
         prune = true;
         all = true;
+        writeCommitGraph = true;
+      };
+      remote = {
+        pushDefault = "origin";
+        origin.pruneTags = true;
       };
       ghq.root = "~/src";
       wt.basedir = "../{gitroot}-worktrees";

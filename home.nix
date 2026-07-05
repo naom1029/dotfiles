@@ -11,6 +11,7 @@
     ./nix/programs/bash.nix
     ./nix/programs/direnv.nix
     ./nix/programs/git.nix
+    ./nix/programs/git-hooks.nix
     ./nix/programs/herdr.nix
     ./nix/programs/lazygit.nix
     ./nix/programs/neovim.nix
