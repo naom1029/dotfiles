@@ -24,6 +24,9 @@
       mkcd = "mkdir -p $1 && cd $1";
     };
     initExtra = ''
+      # Nix
+      [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+
       # Git prompt
       for f in /usr/lib/git-core/git-sh-prompt /usr/share/git/git-prompt.sh /etc/bash_completion.d/git-prompt; do
           [ -f "$f" ] && . "$f" && break
