@@ -23,10 +23,11 @@
       rm = "trash-put";
       mkcd = "mkdir -p $1 && cd $1";
     };
-    initExtra = ''
-      # Nix
+    bashrcExtra = ''
+      # Nix (bashrc先頭で読み込み、Nixパッケージをapt版より優先)
       [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ] && . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-
+    '';
+    initExtra = ''
       # Git prompt
       for f in /usr/lib/git-core/git-sh-prompt /usr/share/git/git-prompt.sh /etc/bash_completion.d/git-prompt; do
           [ -f "$f" ] && . "$f" && break
