@@ -7,13 +7,14 @@ return {
   lazy = false,
   opts = {
     suppressed_dirs = { '~/', '~/Downloads', '~/Documents', '/' },
-    auto_restore = true,
+    auto_restore = false,
     auto_save = true,
     use_git_branch = true,
     bypass_save_filetypes = { 'oil', 'neo-tree', 'dashboard' },
   },
   keys = {
     { '<leader>ps', '<cmd>SessionSearch<cr>', desc = '[P]roject [S]ession 検索' },
+    { '<leader>pr', '<cmd>SessionRestore<cr>', desc = '[P]roject Session [R]estore' },
     { '<leader>pd', '<cmd>SessionDelete<cr>', desc = '[P]roject Session [D]elete' },
   },
 }

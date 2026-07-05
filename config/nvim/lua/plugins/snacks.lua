@@ -22,9 +22,10 @@ return {
           indent = 2,
           padding = 1,
           action = function(dir)
+            vim.cmd('silent! SessionSave')
             vim.cmd('silent! %bdelete!')
             vim.fn.chdir(dir)
-            vim.cmd('Neotree filesystem focus')
+            vim.cmd('silent! SessionRestore')
           end,
         },
         {
@@ -37,6 +38,17 @@ return {
           padding = 1,
         },
         { section = 'startup' },
+      },
+      preset = {
+        keys = {
+          { icon = ' ', key = 'f', desc = 'Find File', action = ":lua require('telescope.builtin').find_files()" },
+          { icon = ' ', key = 'n', desc = 'New File', action = ':enew' },
+          { icon = ' ', key = 'g', desc = 'Find Text', action = ":lua require('telescope.builtin').live_grep()" },
+          { icon = ' ', key = 'r', desc = 'Recent Files', action = ":lua require('telescope.builtin').oldfiles()" },
+          { icon = '󰁯', key = 's', desc = 'Restore Session', action = ':SessionRestore' },
+          { icon = '󰒲', key = 'l', desc = 'Lazy', action = ':Lazy' },
+          { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+        },
       },
     },
   },
