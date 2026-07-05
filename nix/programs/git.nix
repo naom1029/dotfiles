@@ -16,10 +16,38 @@
         editor = "vim";
         quotepath = false;
       };
-      merge.conflictstyle = "zdiff3";
-      rerere.enabled = true;
+      push = {
+        autoSetupRemote = true;
+        useForceIfIncludes = true;
+      };
+      pull.rebase = true;
+      rebase = {
+        autoStash = true;
+        autoSquash = true;
+        updateRefs = true;
+      };
+      merge = {
+        ff = false;
+        conflictstyle = "zdiff3";
+      };
+      commit.verbose = true;
+      diff = {
+        algorithm = "histogram";
+        colorMoved = "plain";
+        renames = true;
+      };
+      rerere = {
+        enabled = true;
+        autoupdate = true;
+      };
       init.defaultBranch = "main";
-      fetch.prune = true;
+      fetch = {
+        prune = true;
+        all = true;
+      };
+      branch.sort = "-committerdate";
+      column.ui = "auto";
+      help.autocorrect = "prompt";
       include.path = "~/.config/delta/themes.gitconfig";
     };
   };

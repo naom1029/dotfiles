@@ -74,5 +74,17 @@
       vi-ins-mode-string = "\\1\\e[6 q\\2(ins)";
       vi-cmd-mode-string = "\\1\\e[2 q\\2(cmd)";
     };
+    extraConfig = ''
+      # vi insert mode でも Ctrl+A/Ctrl+E で行頭/行末移動
+      set keymap vi-insert
+      "\C-a": beginning-of-line
+      "\C-e": end-of-line
+      "\C-k": kill-line
+      "\C-u": unix-line-discard
+      "\C-w": backward-kill-word
+      set keymap vi-command
+      "\C-a": beginning-of-line
+      "\C-e": end-of-line
+    '';
   };
 }
