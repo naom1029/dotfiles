@@ -46,6 +46,9 @@
         all = true;
       };
       ghq.root = "~/src";
+      wt.basedir = "../{gitroot}-worktrees";
+      wt.copyignored = true;
+      wt.remover = "trash-put";
       branch.sort = "-committerdate";
       column.ui = "auto";
       help.autocorrect = "prompt";

@@ -57,10 +57,14 @@
         ) && cd "$selected"
       }
 
-      # git worktree + fzf (branch & path preview)
+      # git-wt shell integration
+      eval "$(git-wt --init bash 2>/dev/null)"
+
+      # git worktree + fzf (select & cd)
       function wtcd() {
         local wt
-        wt=$(git worktree list | fzf --preview 'git -C {1} log --oneline -10 --color=always 2>/dev/null' | awk '{print $1}') && cd "$wt"
+        wt=$(git wt --json 2>/dev/null | jq -r '.[].path' \
+          | fzf --preview 'git -C {} log --oneline -10 --color=always 2>/dev/null') && cd "$wt"
       }
 
       # git switch branch with fzf

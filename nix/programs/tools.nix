@@ -18,6 +18,7 @@
 
     # development
     ghq
+    git-wt
     gh-dash
     online-judge-tools
     claude-code
