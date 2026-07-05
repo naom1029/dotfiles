@@ -14,6 +14,13 @@
           email = "56006010+naom1029@users.noreply.github.com";
         };
       }
+      {
+        condition = "hasconfig:remote.*.url:**:naom1029/**";
+        contents.user = {
+          name = "naom1029";
+          email = "56006010+naom1029@users.noreply.github.com";
+        };
+      }
       { path = "~/.config/git/local.gitconfig"; }
     ];
     settings = {
