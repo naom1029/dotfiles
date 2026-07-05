@@ -2,7 +2,25 @@
 
 {
   home.packages = with pkgs; [
+    # search & file utilities
+    ripgrep
+    fd
+    bat
+    eza
+    jq
+    tree
+    dust
+    trash-cli
+    vivid
+    zoxide
+
+    # development
     ghq
+    gh-dash
+    online-judge-tools
+
+    # monitoring
+    btop
     lazydocker
   ];
 
