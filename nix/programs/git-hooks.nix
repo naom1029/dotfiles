@@ -20,7 +20,7 @@ fi
 
 if git diff HEAD^..HEAD --name-only 2>/dev/null | grep -qE '^(flake\.(nix|lock)|nix/|config/)'; then
   echo "Nix/config changed. Running home-manager switch..."
-  home-manager switch --flake . 2>&1 | tail -5
+  home-manager switch --flake . --impure 2>&1 | tail -5
 fi
 HOOK_EOF
       chmod +x "${dotfilesDir}/.git/hooks/post-commit"
@@ -39,7 +39,7 @@ fi
 
 if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^(flake\.(nix|lock)|nix/|config/)'; then
   echo "Nix/config changed. Running home-manager switch..."
-  home-manager switch --flake . 2>&1 | tail -5
+  home-manager switch --flake . --impure 2>&1 | tail -5
 fi
 HOOK_EOF
       chmod +x "${dotfilesDir}/.git/hooks/post-checkout"
@@ -48,7 +48,7 @@ HOOK_EOF
 #!/usr/bin/env bash
 if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^(flake\.(nix|lock)|nix/|config/)'; then
   echo "Nix/config changed. Running home-manager switch..."
-  home-manager switch --flake . 2>&1 | tail -5
+  home-manager switch --flake . --impure 2>&1 | tail -5
 fi
 HOOK_EOF
       chmod +x "${dotfilesDir}/.git/hooks/post-merge"
@@ -61,7 +61,7 @@ fi
 
 if git diff ORIG_HEAD..HEAD --name-only 2>/dev/null | grep -qE '^(flake\.(nix|lock)|nix/|config/)'; then
   echo "Nix/config changed after rebase. Running home-manager switch..."
-  home-manager switch --flake . 2>&1 | tail -5
+  home-manager switch --flake . --impure 2>&1 | tail -5
 fi
 HOOK_EOF
       chmod +x "${dotfilesDir}/.git/hooks/post-rewrite"
