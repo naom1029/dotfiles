@@ -8,6 +8,48 @@ return {
   build = ':TSUpdate',
   lazy = false,
   config = function()
+    -- Neovim 0.12 で match[id] がリストを返すようになった問題のワークアラウンド
+    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/8636
+    local ok, qp = pcall(require, 'nvim-treesitter.query_predicates')
+    if ok then
+      local query = require('vim.treesitter.query')
+      local function get_node(match, id)
+        local val = match[id]
+        if not val then
+          return nil
+        end
+        if type(val) == 'table' then
+          return val[1]
+        end
+        return val
+      end
+
+      local opts = { force = true, all = false }
+
+      query.add_directive('set-lang-from-info-string!', function(match, _, bufnr, pred, metadata)
+        local node = get_node(match, pred[2])
+        if not node then
+          return
+        end
+        local text = vim.treesitter.get_node_text(node, bufnr):lower()
+        local ft_match = vim.filetype.match({ filename = 'a.' .. text })
+        metadata['injection.language'] = ft_match or text
+      end, opts)
+
+      query.add_directive('downcase!', function(match, _, bufnr, pred, metadata)
+        local node = get_node(match, pred[2])
+        if not node then
+          return
+        end
+        local id = pred[2]
+        local text = vim.treesitter.get_node_text(node, bufnr, { metadata = metadata[id] }) or ''
+        if not metadata[id] then
+          metadata[id] = {}
+        end
+        metadata[id].text = text:lower()
+      end, opts)
+    end
+
     local ensure_installed = {
       'bash',
       'c',
