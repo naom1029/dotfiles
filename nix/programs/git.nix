@@ -45,6 +45,7 @@
         prune = true;
         all = true;
       };
+      ghq.root = "~/src";
       branch.sort = "-committerdate";
       column.ui = "auto";
       help.autocorrect = "prompt";

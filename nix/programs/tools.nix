@@ -5,8 +5,6 @@
     # search & file utilities
     ripgrep
     fd
-    bat
-    eza
     jq
     tree
     dust
@@ -29,7 +27,47 @@
     lazydocker
   ];
 
+  # fzf
   programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    defaultCommand = "rg --files --hidden --follow --glob '!.git/'";
+    defaultOptions = [
+      "--extended"
+      "--cycle"
+      "--select-1"
+      "--height 40%"
+      "--reverse"
+      "--border"
+    ];
+    fileWidget.command = "rg --files --hidden --follow --glob '!.git/'";
+    fileWidget.options = [
+      "--preview 'bat --color=always --style=header,grid --line-range :100 {}'"
+    ];
+    historyWidget.options = [
+      "--preview 'echo {}'"
+      "--preview-window down:3:hidden:wrap"
+      "--bind '?:toggle-preview'"
+    ];
+  };
+
+  # bat
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
+  };
+
+  # eza
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+    git = true;
+  };
+
+  # zoxide
+  programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
   };

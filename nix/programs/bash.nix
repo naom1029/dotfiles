@@ -11,12 +11,17 @@
       "checkwinsize"
     ];
     shellAliases = {
-      ll = "ls -alF";
-      la = "ls -A";
-      l = "ls -CF";
+      ls = "eza";
+      ll = "eza -hlF";
+      la = "eza -hlA";
+      lt = "eza --tree";
+      lg = "eza -hlFg";
+      l = "eza -F";
       g = "ghqcd";
       wt = "wtcd";
       memo = "nvim +MemoToday";
+      rm = "trash-put";
+      mkcd = "mkdir -p $1 && cd $1";
     };
     initExtra = ''
       # Git prompt
@@ -42,20 +47,30 @@
       # ghq
       export GHQ_ROOT="$HOME/src"
 
-      # ghq + fzf
+      # ghq + fzf (eza preview)
       function ghqcd() {
         local selected
         selected=$(
-          { ghq list --full-path 2>/dev/null; find ~/workspace -maxdepth 1 -mindepth 1 -type d 2>/dev/null; } \
-          | sort -u \
-          | fzf --preview 'git -C {} log --oneline -5 2>/dev/null || ls {}'
+          ghq list --full-path 2>/dev/null \
+          | fzf --preview 'eza --tree --level=2 --git-ignore --color=always --icons {} 2>/dev/null || ls {}'
         ) && cd "$selected"
       }
 
-      # git worktree + fzf
+      # git worktree + fzf (branch & path preview)
       function wtcd() {
         local wt
-        wt=$(git worktree list | fzf | awk '{print $1}') && cd "$wt"
+        wt=$(git worktree list | fzf --preview 'git -C {1} log --oneline -10 --color=always 2>/dev/null' | awk '{print $1}') && cd "$wt"
+      }
+
+      # git switch branch with fzf
+      function gsw() {
+        local branch
+        branch=$(git branch --sort=-committerdate --format='%(refname:short)' | fzf --preview 'git log --oneline -10 --color=always {}') && git switch "$branch"
+      }
+
+      # mkcd
+      function mkcd() {
+        mkdir -p "$1" && cd "$1"
       }
 
       # WezTerm OSC 7
