@@ -12,7 +12,9 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      username = "naom1029";
+      username =
+        let u = builtins.getEnv "USER";
+        in if u == "" then throw "USER is empty: run with --impure" else u;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -22,6 +24,7 @@
     {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit username; };
         modules = [ ./home.nix ];
       };
     };

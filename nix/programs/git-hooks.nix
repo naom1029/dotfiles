@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 let
-  dotfilesDir = "/home/naom1029/src/github.com/naom1029/dotfiles";
+  dotfilesDir = "${config.home.homeDirectory}/src/github.com/naom1029/dotfiles";
 in
 {
   home.activation.installDotfilesGitHooks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  dotfilesDir = "/home/naom1029/src/github.com/naom1029/dotfiles";
+  dotfilesDir = "${config.home.homeDirectory}/src/github.com/naom1029/dotfiles";
   claudeDotfilesDir = "${dotfilesDir}/config/claude";
 
   # Settings template — activate when ready to manage settings.json via Nix.
@@ -43,7 +43,7 @@ let
           hooks = [
             {
               type = "command";
-              command = "bash '/home/naom1029/.claude/hooks/herdr-agent-state.sh' session";
+              command = "bash '${config.home.homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
               timeout = 10;
             }
           ];
