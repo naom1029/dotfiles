@@ -44,9 +44,6 @@
       # Go
       [ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
 
-      # ghq
-      export GHQ_ROOT="$HOME/src"
-
       # ghq + fzf (eza preview)
       function ghqcd() {
         local selected
