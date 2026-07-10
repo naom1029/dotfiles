@@ -2,7 +2,7 @@
 
 let
   dotfilesDir = "${config.home.homeDirectory}/src/github.com/naom1029/dotfiles";
-  claudeDotfilesDir = "${dotfilesDir}/config/claude";
+  claudeDotfilesDir = "${dotfilesDir}/.claude";
 
   # Settings template — activate when ready to manage settings.json via Nix.
   # To enable: uncomment the activation block at the bottom.

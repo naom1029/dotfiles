@@ -42,12 +42,6 @@
           export PATH="$VOLTA_HOME/bin:$PATH"
       fi
 
-      # Cargo
-      [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-      # Go
-      [ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
-
       # ghq + fzf (eza preview)
       function ghqcd() {
         local selected

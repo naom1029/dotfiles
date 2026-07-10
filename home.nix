@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./nix/programs/xdg.nix
     ./nix/programs/agent-skills.nix
     ./nix/programs/bash.nix
     ./nix/programs/claude-code.nix
