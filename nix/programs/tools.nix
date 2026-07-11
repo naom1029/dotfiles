@@ -6,6 +6,7 @@
     ripgrep
     fd
     jq
+    jnv
     tree
     dust
     trash-cli
