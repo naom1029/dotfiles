@@ -8,9 +8,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, hunk, ... }:
     let
       username =
         let u = builtins.getEnv "USER";
@@ -24,8 +29,11 @@
     {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit username; };
-        modules = [ ./home.nix ];
+        extraSpecialArgs = { inherit username; hunkPkg = hunk.packages.${system}.default; };
+        modules = [
+          hunk.homeManagerModules.default
+          ./home.nix
+        ];
       };
     };
 }
