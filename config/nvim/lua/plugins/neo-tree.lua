@@ -16,6 +16,14 @@ return {
   opts = {
     close_if_last_window = true,
     popup_border_style = 'rounded',
+    source_selector = {
+      winbar = true,
+      sources = {
+        { source = 'filesystem', display_name = ' Files' },
+        { source = 'git_status', display_name = ' Git' },
+        { source = 'buffers', display_name = '󰈙 Bufs' },
+      },
+    },
     default_component_configs = {
       indent = {
         padding = 0,
@@ -47,6 +55,8 @@ return {
       mappings = {
         ['h'] = 'close_node',
         ['l'] = 'open',
+        ['H'] = 'prev_source',
+        ['L'] = 'next_source',
       },
     },
     filesystem = {
