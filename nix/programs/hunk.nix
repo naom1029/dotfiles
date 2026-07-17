@@ -19,5 +19,6 @@ in
       theme = "auto";
       transparentBackground = true;
     };
+    enableClaudeIntegration = true;
   };
 }
