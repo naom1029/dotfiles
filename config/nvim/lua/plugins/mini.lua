@@ -16,14 +16,6 @@ return {
     -- NOTE: nvim-surroundを使用するため無効化
     -- require('mini.surround').setup()
 
-    -- シンプルで使いやすいステータスライン
-    local statusline = require 'mini.statusline'
-    statusline.setup { use_icons = vim.g.have_nerd_font }
-
-    -- カーソル位置をLINE:COLUMN形式で表示
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function()
-      return '%2l:%-2v'
-    end
+    -- ステータスラインは lualine.nvim に移行済み
   end,
 }
