@@ -15,5 +15,9 @@ in
   programs.hunk = {
     enable = true;
     package = hunkFixed;
+    settings = {
+      theme = "catppuccin-mocha";
+      transparentBackground = true;
+    };
   };
 }
