@@ -13,18 +13,18 @@
         commandLogSize = 4;
         nerdFontsVersion = "3";
         theme = {
-          activeBorderColor = [ "#007acc" "bold" ];
-          inactiveBorderColor = [ "#3c3c3c" ];
-          searchingActiveBorderColor = [ "#3794ff" "bold" ];
-          optionsTextColor = [ "#3794ff" ];
-          selectedLineBgColor = [ "#04395e" ];
-          inactiveViewSelectedLineBgColor = [ "#37373d" ];
-          defaultFgColor = [ "#cccccc" ];
-          unstagedChangesColor = [ "#cca700" ];
-          cherryPickedCommitFgColor = [ "#cccccc" ];
-          cherryPickedCommitBgColor = [ "#264f78" ];
-          markedBaseCommitFgColor = [ "#cccccc" ];
-          markedBaseCommitBgColor = [ "#5a5d5e" ];
+          activeBorderColor = [ "#c4b28a" "bold" ];
+          inactiveBorderColor = [ "#393836" ];
+          searchingActiveBorderColor = [ "#e6c384" "bold" ];
+          optionsTextColor = [ "#7fb4ca" ];
+          selectedLineBgColor = [ "#2d4f67" ];
+          inactiveViewSelectedLineBgColor = [ "#363646" ];
+          defaultFgColor = [ "#c5c9c5" ];
+          unstagedChangesColor = [ "#e46876" ];
+          cherryPickedCommitFgColor = [ "#c5c9c5" ];
+          cherryPickedCommitBgColor = [ "#2d4f67" ];
+          markedBaseCommitFgColor = [ "#c5c9c5" ];
+          markedBaseCommitBgColor = [ "#43436c" ];
         };
       };
       git = {

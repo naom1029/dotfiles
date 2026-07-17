@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 config.use_ime = true
 config.font_size = 10.5
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Kanagawa (Gogh)"
 
 -- フォント設定（WezTerm バンドル Nerd Font）
 config.font = wezterm.font("JetBrains Mono")

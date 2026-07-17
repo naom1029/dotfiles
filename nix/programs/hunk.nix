@@ -16,7 +16,7 @@ in
     enable = true;
     package = hunkFixed;
     settings = {
-      theme = "catppuccin-mocha";
+      theme = "auto";
       transparentBackground = true;
     };
   };

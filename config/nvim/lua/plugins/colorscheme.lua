@@ -63,7 +63,7 @@ return {
       end
 
       -- 保存されたカラースキームがあればそれを使用、なければarcticをデフォルトに
-      local colorscheme_to_load = saved_colorscheme or 'arctic'
+      local colorscheme_to_load = saved_colorscheme or 'kanagawa-dragon'
 
       -- カラースキームを適用（エラーハンドリング付き）
       local ok = pcall(vim.cmd.colorscheme, colorscheme_to_load)
