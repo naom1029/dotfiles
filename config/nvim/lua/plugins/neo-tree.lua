@@ -14,12 +14,53 @@ return {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    close_if_last_window = true,
+    popup_border_style = 'rounded',
+    default_component_configs = {
+      indent = {
+        padding = 0,
+      },
+      icon = {
+        folder_closed = '',
+        folder_open = '',
+        folder_empty = '',
+      },
+      modified = {
+        symbol = '●',
+      },
+      git_status = {
+        symbols = {
+          added = '',
+          deleted = '',
+          modified = '',
+          renamed = '➜',
+          untracked = '★',
+          ignored = '◌',
+          unstaged = '✗',
+          staged = '✓',
+          conflict = '',
+        },
+      },
+    },
+    window = {
+      width = 30,
+      mappings = {
+        ['h'] = 'close_node',
+        ['l'] = 'open',
+      },
+    },
     filesystem = {
       follow_current_file = {
         enabled = true,
-        leave_dirs_open = false,
+        leave_dirs_open = true,
       },
       use_libuv_file_watcher = true,
+      filtered_items = {
+        visible = false,
+        hide_dotfiles = false,
+        hide_gitignored = true,
+      },
+      hijack_netrw_behavior = 'open_current',
       window = {
         mappings = {
           ['\\'] = 'close_window',

@@ -85,11 +85,17 @@ vim.opt.backup = false
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
 
--- コマンドライン高さ
-vim.opt.cmdheight = 1
+-- コマンドライン非表示（入力時のみ表示）
+vim.opt.cmdheight = 0
 
 -- 検索ハイライト
 vim.opt.hlsearch = true
+
+-- グローバルステータスライン（全ウィンドウ共通）
+vim.opt.laststatus = 3
+
+-- フローティングウィンドウの角丸ボーダー
+vim.o.winborder = 'rounded'
 
 -- 隠しバッファを有効化
 vim.opt.hidden = true
