@@ -10,25 +10,16 @@ return {
     -- キーマップを設定
     local map = vim.keymap.set
 
-    -- バッファ間の移動（<leader>b + h/l）
-    map('n', '<leader>bh', '<cmd>BufferPrevious<cr>', { desc = 'Previous buffer' })
-    map('n', '<leader>bl', '<cmd>BufferNext<cr>', { desc = 'Next buffer' })
+    -- バッファ間の移動（n=next / p=previous）
+    map('n', '<leader>bn', '<cmd>BufferNext<cr>', { desc = 'Next buffer' })
+    map('n', '<leader>bp', '<cmd>BufferPrevious<cr>', { desc = 'Previous buffer' })
 
-    -- バッファの並び替え
+    -- バッファの並び替え（左右）
     map('n', '<leader>bH', '<cmd>BufferMovePrevious<cr>', { desc = 'Move buffer left' })
     map('n', '<leader>bL', '<cmd>BufferMoveNext<cr>', { desc = 'Move buffer right' })
 
-    -- 特定のバッファへジャンプ（<leader> + 数字）
-    map('n', '<leader>1', '<cmd>BufferGoto 1<cr>', { desc = 'Goto buffer 1' })
-    map('n', '<leader>2', '<cmd>BufferGoto 2<cr>', { desc = 'Goto buffer 2' })
-    map('n', '<leader>3', '<cmd>BufferGoto 3<cr>', { desc = 'Goto buffer 3' })
-    map('n', '<leader>4', '<cmd>BufferGoto 4<cr>', { desc = 'Goto buffer 4' })
-    map('n', '<leader>5', '<cmd>BufferGoto 5<cr>', { desc = 'Goto buffer 5' })
-    map('n', '<leader>6', '<cmd>BufferGoto 6<cr>', { desc = 'Goto buffer 6' })
-    map('n', '<leader>7', '<cmd>BufferGoto 7<cr>', { desc = 'Goto buffer 7' })
-    map('n', '<leader>8', '<cmd>BufferGoto 8<cr>', { desc = 'Goto buffer 8' })
-    map('n', '<leader>9', '<cmd>BufferGoto 9<cr>', { desc = 'Goto buffer 9' })
-    map('n', '<leader>0', '<cmd>BufferLast<cr>', { desc = 'Goto last buffer' })
+    -- バッファ選択（文字ラベルでジャンプ・数字ジャンプの代替）
+    map('n', '<leader>bb', '<cmd>BufferPick<cr>', { desc = 'Pick buffer' })
 
     -- バッファを閉じる
     map('n', '<leader>bc', '<cmd>BufferClose<cr>', { desc = 'Close buffer' })
@@ -36,9 +27,6 @@ return {
 
     -- バッファのピン留め
     map('n', '<leader>bP', '<cmd>BufferPin<cr>', { desc = 'Pin/Unpin buffer' })
-
-    -- バッファピッカー（インタラクティブ選択）
-    map('n', '<leader>bp', '<cmd>BufferPick<cr>', { desc = 'Buffer pick' })
   end,
   config = function()
     -- barbar.nvim をセットアップ

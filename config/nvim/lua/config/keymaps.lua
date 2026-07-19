@@ -7,8 +7,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highl
 -- Ctrl-C でも InsertLeave が発火するように Esc にマップ
 vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'Exit insert mode (same as Esc)' })
 
--- 診断のQuickfixリストを開く
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- 診断リスト/quickfix/loclist は trouble.nvim に集約（<leader>x 系）
 
 -- 診断間を移動
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic' })

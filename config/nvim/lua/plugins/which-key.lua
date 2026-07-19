@@ -53,6 +53,7 @@ return {
       { '<leader>t', group = '[T]erminal' },
       { '<leader>u', group = '[U]I/Toggle' },
       { '<leader>w', group = '[W]orktree' },
+      { '<leader>x', group = 'Diagnostics/Quickfix' },
     },
   },
 }
