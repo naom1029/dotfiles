@@ -38,7 +38,7 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Increa
 vim.keymap.set('n', '<leader>fs', '<cmd>w<CR>', { desc = '[F]ile [S]ave' })
 
 -- バッファ操作
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = 'Delete buffer' })
+-- NOTE: <leader>bd はレイアウト保持版（Snacks.bufdelete）を plugins/snacks.lua で定義
 
 -- インデント調整後に選択を維持
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })

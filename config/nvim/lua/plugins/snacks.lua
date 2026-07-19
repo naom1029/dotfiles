@@ -2,6 +2,16 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  init = function()
+    -- debug: どこでも綺麗に値を print（dd）/ バックトレース（bt）。vim.print も置換
+    _G.dd = function(...)
+      Snacks.debug.inspect(...)
+    end
+    _G.bt = function()
+      Snacks.debug.backtrace()
+    end
+    vim.print = _G.dd
+  end,
   opts = {
     -- snacks.nvimの基本設定
     -- claudecode.nvimで使用するterminal機能を有効化
@@ -91,6 +101,21 @@ return {
       end,
       desc = 'Prev Reference (同一シンボル)',
       mode = { 'n', 't' },
+    },
+    {
+      '<leader>gB',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = 'ブラウザで開く (GitHub permalink)',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>bd',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'バッファ削除 (レイアウト保持)',
     },
   },
   config = function(_, opts)
