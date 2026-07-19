@@ -110,6 +110,7 @@ return {
         'prettier',
         'eslint_d',
         'typescript-language-server',
+        'js-debug-adapter',
         'cspell',
         'pyright',
       },

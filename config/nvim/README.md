@@ -57,10 +57,12 @@
 | **nvim-dap**              | デバッグアダプタープロトコル | `<F5>` - デバッグ開始/継続<br>`<F10>` - ステップオーバー<br>`<leader>db` - ブレイクポイントトグル           |
 | **nvim-dap-ui**           | デバッグUI             | `<leader>du` - UIトグル<br>`<leader>de` - 式評価                                                            |
 | nvim-dap-virtual-text     | デバッグ情報仮想テキスト表示 | 自動有効                                                                                                     |
-| nvim-dap-vscode-js        | JavaScript/TypeScript デバッガー | TypeScript/JavaScript対応                                                                                 |
+| vscode-js-debug (Mason)   | JavaScript/TypeScript デバッガー | `js-debug-adapter` を nvim-dap に直接登録（接着剤プラグイン不使用）                                    |
 
 **対応言語:**
-- JavaScript/TypeScript (vscode-js-debug)
+- JavaScript/TypeScript (vscode-js-debug / Mason: `js-debug-adapter`)
+  - 単純な `.ts`/`.js`: "Launch file (Node, native TS)"
+  - import を含む実プロジェクト: "Launch file (tsx)"（要 `tsx`）
 - C/C++ (codelldb)
 - Rust (codelldb)
 

@@ -51,5 +51,6 @@ return {
     -- 言語固有のデバッグ設定を読み込み
     require('plugins.dap.cpp')()
     require('plugins.dap.rust')()
+    require('plugins.dap.vscode-js')()
   end,
 }
