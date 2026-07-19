@@ -182,18 +182,18 @@
 - `gr` - 参照一覧
 - `gI` - 実装へジャンプ
 - `gD` - 宣言へジャンプ
-- `gy` - 型定義へジャンプ（旧 `<leader>D`）
+- `gy` - 型定義へジャンプ
 - `<leader>sd` - ドキュメントシンボル検索（Search）
 
 **コードアクション ([C]ode グループ・LazyVim 準拠)：**
 - `<leader>ca` - コードアクション
 - `<leader>cr` - リネーム（LSP 標準、旧 `<leader>rn`）
-- `<leader>cf` - コードフォーマット（旧 `<leader>f`）
-- `<leader>cw` - ワークスペースシンボル検索（旧 `<leader>ws`）
+- `<leader>cf` - コードフォーマット
+- `<leader>cw` - ワークスペースシンボル検索
 - `<leader>cs` - シンボルアウトライン（aerial）
 
 **UI トグル ([U]I グループ)：**
-- `<leader>uh` - Inlay Hints トグル（旧 `<leader>ti`）
+- `<leader>uh` - Inlay Hints トグル
 - `<leader>uc` - Treesitter Context トグル
 - `<leader>um` - Markdown 描画トグル（render-markdown）
 
