@@ -27,7 +27,7 @@
 
 | プラグイン          | 説明               | 主要コマンド/キーマップ                                                            |
 | ------------------- | ------------------ | ---------------------------------------------------------------------------------- |
-| **claudecode.nvim** | Claude Code 統合   | `<leader>ac` - Claude 起動<br>`<leader>af` - フォーカス<br>`<leader>as` - 選択送信 |
+| claudecode.nvim | Claude Code 統合   | `<leader>ac` - Claude 起動<br>`<leader>af` - フォーカス<br>`<leader>as` - 選択送信 |
 | nvim-cmp            | 自動補完エンジン   | `<C-Space>` - 補完メニュー<br>`<C-n/p>` - 候補選択                                 |
 | LuaSnip             | スニペットエンジン | `<C-l>` - 次の位置へ<br>`<C-h>` - 前の位置へ                                       |
 | nvim-autopairs      | 括弧/クォート補完  | 自動有効                                                                          |
@@ -42,6 +42,11 @@
 | nvim-ts-autotag | HTML/JSX タグ自動閉じ   | 自動有効                                                   |
 | conform.nvim    | フォーマッター          | `<leader>cf` - フォーマット                                |
 | lazydev.nvim    | Neovim Lua 開発サポート | 自動有効                                                   |
+| nvim-treesitter-context | 関数/クラスのコンテキスト固定表示 | `<leader>uc` - トグル                          |
+| aerial.nvim | シンボルアウトライン    | `<leader>cs` - トグル<br>`]a/[a` - シンボル移動            |
+| trouble.nvim | 診断/quickfix リスト UI | `<leader>xx` - 診断リスト（他 `<leader>x` 系）           |
+| inc-rename.nvim | リネームのライブプレビュー | `<leader>cr` - リネーム                                 |
+| ts-error-translator.nvim | TS エラーを平易に翻訳 | 自動有効                                             |
 
 **対応言語サーバー:**
 - Lua (lua_ls)
@@ -54,8 +59,8 @@
 
 | プラグイン                | 説明                   | 主要コマンド/キーマップ                                                                                      |
 | ------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **nvim-dap**              | デバッグアダプタープロトコル | `<F5>` - デバッグ開始/継続<br>`<F10>` - ステップオーバー<br>`<leader>db` - ブレイクポイントトグル           |
-| **nvim-dap-ui**           | デバッグUI             | `<leader>du` - UIトグル<br>`<leader>de` - 式評価                                                            |
+| nvim-dap              | デバッグアダプタープロトコル | `<F5>` - デバッグ開始/継続<br>`<F10>` - ステップオーバー<br>`<leader>db` - ブレイクポイントトグル           |
+| nvim-dap-ui           | デバッグUI             | `<leader>du` - UIトグル<br>`<leader>de` - 式評価                                                            |
 | nvim-dap-virtual-text     | デバッグ情報仮想テキスト表示 | 自動有効                                                                                                     |
 | vscode-js-debug (Mason)   | JavaScript/TypeScript デバッガー | `js-debug-adapter` を nvim-dap に直接登録（接着剤プラグイン不使用）                                    |
 
@@ -72,7 +77,7 @@
 | -------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
 | telescope.nvim | ファジーファインダー           | `<leader>sf` - ファイル検索<br>`<leader>sg` - grep 検索<br>`<leader><leader>` - バッファ |
 | neo-tree.nvim  | ファイルエクスプローラー       | `\` - 開閉トグル                                                                         |
-| **oil.nvim**   | バッファ型ファイルマネージャー | `-` - 親ディレクトリを開く<br>`<leader>e` - カレントディレクトリを開く                   |
+| oil.nvim   | バッファ型ファイルマネージャー | `-` - 親ディレクトリを開く<br>`<leader>o` - カレントディレクトリを開く                   |
 
 ### Git 連携
 
@@ -81,18 +86,18 @@
 | gitsigns.nvim       | Git 差分表示・操作     | `<leader>gd` - diff<br>`<leader>gb` - blame<br>`<leader>gp` - preview<br>`]h/[h` - hunk移動 |
 | lazygit.nvim        | LazyGit TUI 統合       | `<leader>gl` - LazyGit 起動<br>`<leader>gc` - 設定画面<br>`<leader>gf` - 現在のファイル                                                    |
 | git-worktree.nvim   | Git worktree 管理      | `<leader>wl` - 一覧・切り替え<br>`<leader>wc` - 新規作成                                                                                    |
+| diffview.nvim       | Git diff/履歴ビューア  | `<leader>gD` - プロジェクト diff<br>`<leader>gH` - ファイル履歴 |
 
 ### UI・表示
 
 | プラグイン            | 説明                           | 主要コマンド/キーマップ                                 |
 | --------------------- | ------------------------------ | ------------------------------------------------------- |
 | kanagawa.nvim         | カラースキーム                 | 自動適用 (kanagawa-dragon)                              |
-| **barbar.nvim**       | タブライン風バッファライン     | `<A-,/.>` - 前/次のバッファ<br>`<A-1~9>` - バッファ選択 |
+| barbar.nvim       | タブライン風バッファライン     | `<leader>bn/bp` - 次/前のバッファ<br>`<leader>bb` - 選択(pick) |
 | nvim-web-devicons     | ファイルアイコン表示           | 自動有効                                                |
-| vim-illuminate        | 同名シンボルの自動ハイライト   | `]r/[r` - 次/前の参照へ移動                              |
 | which-key.nvim        | キーバインドガイド             | キー押下で自動表示                                      |
-| mini.statusline       | ステータスライン               | 自動表示                                                |
-| todo-comments.nvim    | TODO/FIXME ハイライト          | 自動ハイライト                                          |
+| lualine.nvim          | ステータスライン               | 自動表示                                                |
+| todo-comments.nvim    | TODO/FIXME ハイライト          | 自動ハイライト<br>`]t/[t` - 次/前の TODO へ             |
 | indent-blankline.nvim | インデントガイド（レインボー） | 自動表示                                                |
 
 ### ユーティリティ
@@ -103,10 +108,12 @@
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
 | toggleterm.nvim   | ターミナルトグル               | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |
-| **memo.nvim**     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索<br>`<leader>md` - 今日の予実メモ              |
-| **nvim-rooter**   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
-| **auto-session**  | セッション自動保存/復元        | 自動有効<br>`<leader>ps` - セッション検索<br>`<leader>pd` - セッション削除                   |
-| **hardtime.nvim** | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
+| memo.nvim     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索<br>`<leader>md` - 今日の予実メモ              |
+| nvim-rooter   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
+| flash.nvim    | ラベルジャンプ | `s` - ジャンプ<br>`S` - Treesitter 選択                                                  |
+| dressing.nvim     | 入力/選択 UI の改善            | 自動有効（vim.ui.input/select を装飾）                                                       |
+| auto-session  | セッション自動保存/復元        | 自動有効<br>`<leader>ps` - セッション検索<br>`<leader>pd` - セッション削除                   |
+| hardtime.nvim | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
 | vim-sleuth        | インデント自動検出             | 自動有効                                                                                     |
 
 ### Markdown
@@ -114,7 +121,7 @@
 | プラグイン              | 説明                           | 主要コマンド/キーマップ                          |
 | ----------------------- | ------------------------------ | ------------------------------------------------ |
 | markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>cp` - プレビュートグル                  |
-| **render-markdown.nvim** | Markdown バッファ内リッチ描画 | `<leader>um` - 描画トグル                        |
+| render-markdown.nvim | Markdown バッファ内リッチ描画 | `<leader>um` - 描画トグル                        |
 
 ## キーマップ
 
@@ -161,14 +168,13 @@
 
 #### バッファライン (barbar.nvim)
 
-- `<A-,>` / `<A-.>` - 前/次のバッファへ移動
-- `<A-<>` / `<A->>` - バッファの順序を左/右に移動
-- `<leader>1` ~ `<leader>9` - 特定のバッファへジャンプ
-- `<leader>0` - 最後のバッファへジャンプ
-- `<A-c>` - 現在のバッファを閉じる
-- `<A-C>` - 現在以外のすべてのバッファを閉じる
-- `<A-p>` - バッファをピン留め/解除
-- `<leader>bp` - バッファピッカー（インタラクティブ選択）
+- `<leader>bn` / `<leader>bp` - 次/前のバッファへ移動
+- `<leader>bH` / `<leader>bL` - バッファの順序を左/右に移動
+- `<leader>bb` - バッファ選択（文字ラベルで直接ジャンプ・数字ジャンプの代替）
+- `<leader>bc` - 現在のバッファを閉じる
+- `<leader>bo` - 現在以外のすべてのバッファを閉じる
+- `<leader>bP` - バッファをピン留め/解除
+- `<leader>bd` - バッファ削除（レイアウト保持・snacks.bufdelete）
 
 #### LSP・コード編集
 
@@ -185,11 +191,32 @@
 - `<leader>cr` - リネーム（inc-rename、旧 `<leader>rn`）
 - `<leader>cf` - コードフォーマット（旧 `<leader>f`）
 - `<leader>cw` - ワークスペースシンボル検索（旧 `<leader>ws`）
+- `<leader>cs` - シンボルアウトライン（aerial）
 
 **UI トグル ([U]I グループ)：**
 - `<leader>uh` - Inlay Hints トグル（旧 `<leader>ti`）
 - `<leader>uc` - Treesitter Context トグル
 - `<leader>um` - Markdown 描画トグル（render-markdown）
+
+#### 診断・quickfix (trouble.nvim)
+
+- `<leader>xx` - 全診断リスト
+- `<leader>xX` - 現在バッファの診断
+- `<leader>xl` - LSP 定義/参照リスト
+- `<leader>xs` - シンボルリスト
+- `<leader>xL` - Location list
+- `<leader>xQ` - Quickfix list
+- `<leader>xt` - TODO 一覧
+- `<leader>e` - 現在行の診断を float 表示（標準）
+- `<leader>sD` - 診断をあいまい検索（telescope）
+
+#### 移動 (`[` / `]` プレフィックス)
+
+- `]d` / `[d` - 次/前の診断へ
+- `]h` / `[h` - 次/前の git hunk へ
+- `]a` / `[a` - 次/前のシンボルへ（aerial）
+- `]t` / `[t` - 次/前の TODO コメントへ
+- `]]` / `[[` - 次/前の同一シンボル参照へ（snacks words）
 
 #### デバッグ (DAP)
 
