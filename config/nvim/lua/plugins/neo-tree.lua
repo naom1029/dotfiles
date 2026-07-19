@@ -77,5 +77,20 @@ return {
         },
       },
     },
+    -- ファイル移動/リネーム時に LSP へ通知し import 等を追従（snacks.rename）
+    event_handlers = {
+      {
+        event = 'file_moved',
+        handler = function(args)
+          Snacks.rename.on_rename_file(args.source, args.destination)
+        end,
+      },
+      {
+        event = 'file_renamed',
+        handler = function(args)
+          Snacks.rename.on_rename_file(args.source, args.destination)
+        end,
+      },
+    },
   },
 }

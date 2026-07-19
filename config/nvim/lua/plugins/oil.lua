@@ -109,4 +109,17 @@ return {
     -- gitsigns.nvim と連携
     use_default_keymaps = true,
   },
+  config = function(_, opts)
+    require('oil').setup(opts)
+
+    -- ファイル移動/リネーム時に LSP へ通知し import 等を追従（snacks.rename）
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'OilActionsPost',
+      callback = function(event)
+        if event.data.actions.type == 'move' then
+          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+        end
+      end,
+    })
+  end,
 }

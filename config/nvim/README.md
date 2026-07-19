@@ -99,7 +99,7 @@
 
 | プラグイン        | 説明                           | 主要コマンド/キーマップ                                                                      |
 | ----------------- | ------------------------------ | -------------------------------------------------------------------------------------------- |
-| snacks.nvim       | ダッシュボード・ターミナル機能 | `<leader>.` - ダッシュボード<br>claudecode 依存                                              |
+| snacks.nvim       | QoL 機能の詰め合わせ           | `<leader>.` - ダッシュボード<br>`]]`/`[[` - 同一シンボル参照へジャンプ（words）<br>その他: terminal, bigfile, quickfile, scroll, rename(neo-tree/oil 連携) を有効化 |
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
 | toggleterm.nvim   | ターミナルトグル               | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |

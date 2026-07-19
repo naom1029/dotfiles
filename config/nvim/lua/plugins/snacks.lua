@@ -51,6 +51,22 @@ return {
         },
       },
     },
+    -- words: LSP(document_highlight)ベースで同一シンボル間をジャンプ（]] / [[）
+    words = {
+      enabled = true,
+    },
+    -- bigfile: 巨大ファイルを開いたら LSP/treesitter 等を自動で無効化して軽量化
+    bigfile = {
+      enabled = true,
+    },
+    -- quickfile: プラグイン読込前にファイルを即描画して起動を高速化
+    quickfile = {
+      enabled = true,
+    },
+    -- scroll: スムーズスクロール（合わなければ enabled = false に）
+    scroll = {
+      enabled = true,
+    },
   },
   keys = {
     {
@@ -59,6 +75,22 @@ return {
         Snacks.dashboard()
       end,
       desc = 'Dashboard',
+    },
+    {
+      ']]',
+      function()
+        Snacks.words.jump(vim.v.count1)
+      end,
+      desc = 'Next Reference (同一シンボル)',
+      mode = { 'n', 't' },
+    },
+    {
+      '[[',
+      function()
+        Snacks.words.jump(-vim.v.count1)
+      end,
+      desc = 'Prev Reference (同一シンボル)',
+      mode = { 'n', 't' },
     },
   },
   config = function(_, opts)
