@@ -33,8 +33,8 @@ vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease window 
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Decrease window width' })
 vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Increase window width' })
 
--- クイックセーブ
-vim.keymap.set('n', '<leader>fs', '<cmd>w<CR>', { desc = '[F]ile [S]ave' })
+-- ファイル保存（Ctrl-s: ノーマル/インサート/ビジュアル）
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
 -- バッファ操作
 -- NOTE: <leader>bd はレイアウト保持版（Snacks.bufdelete）を plugins/snacks.lua で定義
