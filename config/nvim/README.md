@@ -45,7 +45,6 @@
 | nvim-treesitter-context | 関数/クラスのコンテキスト固定表示 | `<leader>uc` - トグル                          |
 | aerial.nvim | シンボルアウトライン    | `<leader>cs` - トグル<br>`]a/[a` - シンボル移動            |
 | trouble.nvim | 診断/quickfix リスト UI | `<leader>xx` - 診断リスト（他 `<leader>x` 系）           |
-| inc-rename.nvim | リネームのライブプレビュー | `<leader>cr` - リネーム                                 |
 | ts-error-translator.nvim | TS エラーを平易に翻訳 | 自動有効                                             |
 
 **対応言語サーバー:**
@@ -188,7 +187,7 @@
 
 **コードアクション ([C]ode グループ・LazyVim 準拠)：**
 - `<leader>ca` - コードアクション
-- `<leader>cr` - リネーム（inc-rename、旧 `<leader>rn`）
+- `<leader>cr` - リネーム（LSP 標準、旧 `<leader>rn`）
 - `<leader>cf` - コードフォーマット（旧 `<leader>f`）
 - `<leader>cw` - ワークスペースシンボル検索（旧 `<leader>ws`）
 - `<leader>cs` - シンボルアウトライン（aerial）
@@ -216,7 +215,9 @@
 - `]h` / `[h` - 次/前の git hunk へ
 - `]a` / `[a` - 次/前のシンボルへ（aerial）
 - `]t` / `[t` - 次/前の TODO コメントへ
-- `]]` / `[[` - 次/前の同一シンボル参照へ（snacks words）
+- `]r` / `[r` - 次/前の同一シンボル参照へ（snacks words）
+- `]]` / `[[`・`][` / `[]` - 次/前の関数・セクションへ（Vim 標準）
+- `%` - 対応する括弧へジャンプ（Vim 標準）
 
 #### デバッグ (DAP)
 

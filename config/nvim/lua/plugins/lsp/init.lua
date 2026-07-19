@@ -31,10 +31,7 @@ return {
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
         map('<leader>sd', require('telescope.builtin').lsp_document_symbols, '[S]earch [D]ocument symbols')
         map('<leader>cw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[C]ode [W]orkspace symbols')
-        -- inc-rename: 変更箇所をライブプレビューしながらリネーム（<cword> をプリフィル）
-        vim.keymap.set('n', '<leader>cr', function()
-          return ':IncRename ' .. vim.fn.expand('<cword>')
-        end, { expr = true, buffer = event.buf, desc = 'LSP: [C]ode [R]ename (inc)' })
+        map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 

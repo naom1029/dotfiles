@@ -87,19 +87,19 @@ return {
       desc = 'Dashboard',
     },
     {
-      ']]',
+      ']r',
       function()
         Snacks.words.jump(vim.v.count1)
       end,
-      desc = 'Next Reference (同一シンボル)',
+      desc = '次の同一シンボル参照へ',
       mode = { 'n', 't' },
     },
     {
-      '[[',
+      '[r',
       function()
         Snacks.words.jump(-vim.v.count1)
       end,
-      desc = 'Prev Reference (同一シンボル)',
+      desc = '前の同一シンボル参照へ',
       mode = { 'n', 't' },
     },
     {
