@@ -23,11 +23,10 @@
 
 ## インストール済みプラグイン
 
-### AI・コード補完
+### コード補完
 
 | プラグイン          | 説明               | 主要コマンド/キーマップ                                                            |
 | ------------------- | ------------------ | ---------------------------------------------------------------------------------- |
-| claudecode.nvim | Claude Code 統合   | `<leader>ac` - Claude 起動<br>`<leader>af` - フォーカス<br>`<leader>as` - 選択送信 |
 | nvim-cmp            | 自動補完エンジン   | `<C-Space>` - 補完メニュー<br>`<C-n/p>` - 候補選択                                 |
 | LuaSnip             | スニペットエンジン | `<C-l>` - 次の位置へ<br>`<C-h>` - 前の位置へ                                       |
 | nvim-autopairs      | 括弧/クォート補完  | 自動有効                                                                          |
@@ -275,18 +274,6 @@
 **カテゴリ:** work, personal, idea（`~/.memo/{category}/` に保存）
 
 **予実メモ:** `~/.memo/daily/YYYY-MM-DD.md`（1日1ファイル）。`:MemoToday` コマンドでも開ける。シェルから一発で開きたい場合は `~/.bashrc` に `alias memo='nvim +MemoToday'` を追加。
-
-### Claude Code
-
-- `<leader>at` - Claude Code 起動/トグル
-- `<leader>ac` - Continue Claude
-- `<leader>af` - Claude にフォーカス
-- `<leader>ar` - Resume Claude
-- `<leader>am` - モデル選択
-- `<leader>ab` - 現在のバッファを追加
-- `<leader>as` - 選択テキストを送信
-- `<leader>aa` - diff 承認
-- `<leader>ad` - diff 却下
 
 ### Git 操作
 

@@ -5,7 +5,6 @@
   "auto-session": { "branch": "main", "commit": "6cde3874a9283c2db55627acca5f28e4fa402320" },
   "barbar.nvim": { "branch": "master", "commit": "337ecfadb8bf005050990bf2f624dc4fc828dabd" },
   "catppuccin": { "branch": "main", "commit": "058e83dc009e4dd62f30807054de9cc849699e27" },
-  "claudecode.nvim": { "branch": "main", "commit": "2390c6e45c4789072c293ac69de051d169668b29" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },

@@ -41,7 +41,6 @@ return {
     },
     -- キーチェーンのドキュメント
     spec = {
-      { '<leader>a', group = '[A]I/Claude Code' },
       { '<leader>b', group = '[B]uffer' },
       { '<leader>c', group = '[C]ode' , mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ebug' },

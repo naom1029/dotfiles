@@ -14,7 +14,6 @@ return {
   end,
   opts = {
     -- snacks.nvimの基本設定
-    -- claudecode.nvimで使用するterminal機能を有効化
     terminal = {
       enabled = true,
     },
