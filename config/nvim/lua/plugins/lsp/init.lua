@@ -30,8 +30,11 @@ return {
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
         map('<leader>sd', require('telescope.builtin').lsp_document_symbols, '[S]earch [D]ocument symbols')
-        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>cw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[C]ode [W]orkspace symbols')
+        -- inc-rename: 変更箇所をライブプレビューしながらリネーム（<cword> をプリフィル）
+        vim.keymap.set('n', '<leader>cr', function()
+          return ':IncRename ' .. vim.fn.expand('<cword>')
+        end, { expr = true, buffer = event.buf, desc = 'LSP: [C]ode [R]ename (inc)' })
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
@@ -58,11 +61,11 @@ return {
           })
         end
 
-        -- Inlay Hints トグル
+        -- Inlay Hints トグル（UI）
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>ti', function()
+          map('<leader>uh', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-          end, '[T]oggle [I]nlay hints')
+          end, '[U]I: Toggle inlay [H]ints')
         end
       end,
     })

@@ -6,7 +6,7 @@ return {
   ft = { "markdown" },
   build = "cd app && yarn install",
   keys = {
-    { "<leader>tp", "<cmd>MarkdownPreviewToggle<cr>", desc = "[T]oggle Markdown [P]review" },
+    { "<leader>cp", "<cmd>MarkdownPreviewToggle<cr>", desc = "[C]ode: Markdown [P]review" },
   },
   init = function()
     vim.g.mkdp_filetypes = { "markdown" }

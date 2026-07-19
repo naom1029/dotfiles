@@ -9,7 +9,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader>tm', '<cmd>RenderMarkdown toggle<cr>', desc = '[T]oggle Render [M]arkdown' },
+    { '<leader>um', '<cmd>RenderMarkdown toggle<cr>', desc = '[U]I: Toggle Render [M]arkdown' },
   },
   opts = {},
 }

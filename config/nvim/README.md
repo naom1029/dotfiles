@@ -40,7 +40,7 @@
 | mason.nvim      | LSP サーバー管理        | `:Mason` - 管理 UI                                         |
 | nvim-treesitter | 構文解析・ハイライト    | 自動有効                                                   |
 | nvim-ts-autotag | HTML/JSX タグ自動閉じ   | 自動有効                                                   |
-| conform.nvim    | フォーマッター          | `<leader>f` - フォーマット                                 |
+| conform.nvim    | フォーマッター          | `<leader>cf` - フォーマット                                |
 | lazydev.nvim    | Neovim Lua 開発サポート | 自動有効                                                   |
 
 **対応言語サーバー:**
@@ -113,8 +113,8 @@
 
 | プラグイン              | 説明                           | 主要コマンド/キーマップ                          |
 | ----------------------- | ------------------------------ | ------------------------------------------------ |
-| markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>tp` - プレビュートグル                  |
-| **render-markdown.nvim** | Markdown バッファ内リッチ描画 | `<leader>tm` - 描画トグル                        |
+| markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>cp` - プレビュートグル                  |
+| **render-markdown.nvim** | Markdown バッファ内リッチ描画 | `<leader>um` - 描画トグル                        |
 
 ## キーマップ
 
@@ -172,16 +172,24 @@
 
 #### LSP・コード編集
 
+**移動 (goto)：**
 - `gd` - 定義へジャンプ
 - `gr` - 参照一覧
 - `gI` - 実装へジャンプ
+- `gD` - 宣言へジャンプ
 - `<leader>D` - 型定義へジャンプ
+- `<leader>sd` - ドキュメントシンボル検索（Search）
+
+**コードアクション ([C]ode グループ・LazyVim 準拠)：**
 - `<leader>ca` - コードアクション
-- `<leader>rn` - リネーム
-- `<leader>f` - コードフォーマット
-- `<leader>sd` - ドキュメントシンボル検索
-- `<leader>ws` - ワークスペースシンボル検索
-- `<leader>ti` - Inlay Hints トグル
+- `<leader>cr` - リネーム（inc-rename、旧 `<leader>rn`）
+- `<leader>cf` - コードフォーマット（旧 `<leader>f`）
+- `<leader>cw` - ワークスペースシンボル検索（旧 `<leader>ws`）
+
+**UI トグル ([U]I グループ)：**
+- `<leader>uh` - Inlay Hints トグル（旧 `<leader>ti`）
+- `<leader>uc` - Treesitter Context トグル
+- `<leader>um` - Markdown 描画トグル（render-markdown）
 
 #### デバッグ (DAP)
 
@@ -213,8 +221,8 @@
 
 #### Markdown
 
-- `<leader>tp` - Markdown ブラウザプレビューのトグル (markdown-preview)
-- `<leader>tm` - Markdown バッファ内描画のトグル (render-markdown)
+- `<leader>cp` - Markdown ブラウザプレビューのトグル (markdown-preview)
+- `<leader>um` - Markdown バッファ内描画のトグル (render-markdown)
 
 #### テキスト操作 (nvim-surround)
 
