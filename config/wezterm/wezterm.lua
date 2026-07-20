@@ -8,6 +8,11 @@ config.use_ime = true
 config.font_size = 10.5
 config.color_scheme = "Kanagawa (Gogh)"
 
+-- kitty keyboard protocol を有効化
+-- Ctrl+Shift+文字 を区別して送れるようになり、Neovim の <C-S-b>（ビルドタスク）等が効く
+-- 注意: enable_csi_u_key_encoding は使わない（Shift が落ちるバグ #6496 のため）
+config.enable_kitty_keyboard = true
+
 -- フォント設定（WezTerm バンドル Nerd Font）
 config.font = wezterm.font("JetBrains Mono")
 
