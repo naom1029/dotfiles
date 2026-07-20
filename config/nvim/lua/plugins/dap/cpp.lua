@@ -48,7 +48,7 @@ return function()
   -- C++ デフォルトデバッグ設定（プロジェクト固有設定がない場合のフォールバック）
   dap.configurations.cpp = {
     {
-      name = 'Launch file',
+      name = 'Launch file (手入力)',
       type = 'codelldb',
       request = 'launch',
       program = function()
