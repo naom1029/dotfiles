@@ -187,7 +187,7 @@
 
 **コードアクション ([C]ode グループ・LazyVim 準拠)：**
 - `<leader>ca` - コードアクション
-- `<leader>cr` - リネーム（LSP 標準、旧 `<leader>rn`）
+- `<leader>cr` - リネーム（LSP 標準）
 - `<leader>cf` - コードフォーマット
 - `<leader>cs` - シンボルアウトライン（aerial）
 
