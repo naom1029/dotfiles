@@ -26,8 +26,6 @@ return {
   },
   opts = {
     notify_on_error = false,
-    -- プロジェクトローカル（node_modules/.bin）のフォーマッタを PATH より優先
-    prefer_local = 'node_modules/.bin',
     format_on_save = {
       timeout_ms = 500,
       lsp_format = 'fallback',
