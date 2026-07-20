@@ -11,10 +11,10 @@ return {
   cmd = { 'OverseerRun', 'OverseerToggle', 'OverseerQuickAction', 'OverseerRunCmd', 'OverseerInfo' },
   keys = {
     {
-      '<C-S-b>',
+      '<F6>',
       function()
         local overseer = require('overseer')
-        overseer.run_template({ tags = { overseer.TAG.BUILD } })
+        overseer.run_task({ tags = { overseer.TAG.BUILD } })
       end,
       desc = 'ビルドタスク実行 (Overseer)',
     },
