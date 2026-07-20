@@ -113,6 +113,7 @@
 | auto-session  | セッション自動保存/復元        | 自動有効<br>`<leader>ps` - セッション検索<br>`<leader>pd` - セッション削除                   |
 | hardtime.nvim | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
 | vim-sleuth        | インデント自動検出             | 自動有効                                                                                     |
+| overseer.nvim     | タスクランナー (tasks.json 対応) | `<C-S-b>` - ビルドタスク実行<br>`:OverseerRun` - 全タスク選択<br>`:OverseerToggle` - 出力パネル |
 
 ### Markdown
 
