@@ -93,13 +93,4 @@ return function()
   for _, lang in ipairs({ 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }) do
     dap.configurations[lang] = configurations
   end
-
-  -- .vscode/launch.json の自動読み込み（プロジェクトルートに存在する場合）
-  -- VSCode と同じデバッグ設定を共有可能
-  pcall(function()
-    require('dap.ext.vscode').load_launchjs(nil, {
-      ['pwa-node'] = { 'javascript', 'typescript' },
-      ['node'] = { 'javascript', 'typescript' },
-    })
-  end)
 end

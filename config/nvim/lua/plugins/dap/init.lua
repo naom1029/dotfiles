@@ -52,5 +52,14 @@ return {
     require('plugins.dap.cpp')()
     require('plugins.dap.rust')()
     require('plugins.dap.vscode-js')()
+
+    -- .vscode/launch.json を一括読み込み（プロジェクトルートに存在する場合）
+    -- codelldb: c/cpp/rust、pwa-node: javascript/typescript
+    pcall(function()
+      require('dap.ext.vscode').load_launchjs(nil, {
+        codelldb = { 'c', 'cpp', 'rust' },
+        ['pwa-node'] = { 'javascript', 'typescript' },
+      })
+    end)
   end,
 }

@@ -68,8 +68,4 @@ return function()
 
   -- C も同じ設定を使用
   dap.configurations.c = dap.configurations.cpp
-
-  -- .vscode/launch.json の自動読み込み（プロジェクトルートに存在する場合）
-  -- これにより、VSCode と同じデバッグ設定を共有可能
-  require('dap.ext.vscode').load_launchjs(nil, { codelldb = { 'c', 'cpp' } })
 end
