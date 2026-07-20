@@ -60,6 +60,19 @@ return function()
       console = 'integratedTerminal',
     },
     {
+      -- 現在ファイルと同じディレクトリの input.txt を標準入力に流す（AtCoder のサンプル用）
+      name = 'Launch file (input.txt を標準入力に)',
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.expand('%:p:h') .. '/', 'file')
+      end,
+      cwd = '${fileDirname}',
+      stopOnEntry = false,
+      -- stdio = { stdin, stdout, stderr }。stdin を input.txt に、出力は既定のまま
+      stdio = { 'input.txt', vim.NIL, vim.NIL },
+    },
+    {
       name = 'Attach to process',
       type = 'codelldb',
       request = 'attach',
