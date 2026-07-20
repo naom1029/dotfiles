@@ -30,7 +30,7 @@ return {
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('gy', require('telescope.builtin').lsp_type_definitions, '[G]oto t[Y]pe definition')
         map('<leader>sd', require('telescope.builtin').lsp_document_symbols, '[S]earch [D]ocument symbols')
-        map('<leader>cw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[C]ode [W]orkspace symbols')
+        map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[S]earch workspace [S]ymbols')
         map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
