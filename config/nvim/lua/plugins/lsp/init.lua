@@ -111,6 +111,7 @@ return {
         'eslint_d',
         'typescript-language-server',
         'js-debug-adapter',
+        'codelldb',
         'cspell',
         'pyright',
       },
