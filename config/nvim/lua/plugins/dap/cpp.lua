@@ -60,8 +60,8 @@ return function()
       console = 'integratedTerminal',
     },
     {
-      -- 現在ファイルと同じディレクトリの input.txt を標準入力に流す（AtCoder のサンプル用）
-      name = 'Launch file (input.txt を標準入力に)',
+      -- test/ 内の oj サンプル（sample-*.in）を選んで標準入力に流す（AtCoder 用）
+      name = 'Launch file (test/ のサンプル入力)',
       type = 'codelldb',
       request = 'launch',
       program = function()
@@ -69,8 +69,24 @@ return function()
       end,
       cwd = '${fileDirname}',
       stopOnEntry = false,
-      -- stdio = { stdin, stdout, stderr }。stdin を input.txt に、出力は既定のまま
-      stdio = { 'input.txt', vim.NIL, vim.NIL },
+      -- test/*.in を列挙し、複数あれば選択して stdin に流す
+      stdio = function()
+        local dir = vim.fn.expand('%:p:h') .. '/test'
+        local ins = vim.fn.glob(dir .. '/*.in', false, true)
+        if #ins == 0 then
+          vim.notify('test/*.in が見つかりません（手入力にフォールバック）', vim.log.levels.WARN)
+          return nil
+        end
+        if #ins == 1 then
+          return { ins[1], vim.NIL, vim.NIL }
+        end
+        local items = { '標準入力に使うサンプルを選択:' }
+        for i, f in ipairs(ins) do
+          items[i + 1] = i .. ': ' .. vim.fn.fnamemodify(f, ':t')
+        end
+        local choice = vim.fn.inputlist(items)
+        return { ins[choice] or ins[1], vim.NIL, vim.NIL }
+      end,
     },
     {
       name = 'Attach to process',
