@@ -13,10 +13,11 @@ return {
     {
       '<F6>',
       function()
-        local overseer = require('overseer')
-        overseer.run_task({ tags = { overseer.TAG.BUILD } })
+        -- 全タスクから実行（該当が1つなら即実行、複数なら選択）。
+        -- overseer は cppbuild type 非対応のため build タグ限定にはしない。
+        require('overseer').run_task({})
       end,
-      desc = 'ビルドタスク実行 (Overseer)',
+      desc = 'タスク実行 (Overseer)',
     },
   },
   opts = {},
