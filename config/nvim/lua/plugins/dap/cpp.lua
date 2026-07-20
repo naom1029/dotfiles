@@ -56,6 +56,8 @@ return function()
       end,
       cwd = '${workspaceFolder}',
       stopOnEntry = false,
+      -- 標準入力(cin)を統合ターミナルで手入力できるようにする
+      console = 'integratedTerminal',
     },
     {
       name = 'Attach to process',
