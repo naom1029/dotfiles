@@ -5,13 +5,21 @@ return {
   "iamcco/markdown-preview.nvim",
   ft = { "markdown" },
   build = "cd app && yarn install",
-  keys = {
-    { "<leader>vp", "<cmd>MarkdownPreviewToggle<cr>", desc = "[V]iew: Markdown [P]review (browser)" },
-  },
   -- plugin/mkdp.vim は読み込み時に s:init() を実行し、その時点の g:mkdp_* を見て
   -- autocmd を登録する。config では手遅れになるため init で設定すること。
   init = function()
     vim.g.mkdp_filetypes = { "markdown" }
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "markdown",
+      callback = function(event)
+        vim.keymap.set("n", "<leader>vp", "<cmd>MarkdownPreviewToggle<cr>", {
+          buffer = event.buf,
+          desc = "[V]iew: Markdown [P]review (browser)",
+        })
+      end,
+    })
+  end,
+  config = function()
     vim.g.mkdp_auto_start = 0
     -- combine_preview 有効時は 0 が前提（プラグイン README の指定）
     vim.g.mkdp_auto_close = 0

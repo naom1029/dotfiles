@@ -8,8 +8,16 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
-  keys = {
-    { '<leader>um', '<cmd>RenderMarkdown toggle<cr>', desc = '[U]I: Toggle Render [M]arkdown' },
-  },
+  init = function()
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'markdown',
+      callback = function(event)
+        vim.keymap.set('n', '<leader>um', '<cmd>RenderMarkdown toggle<cr>', {
+          buffer = event.buf,
+          desc = '[U]I: Toggle Render [M]arkdown',
+        })
+      end,
+    })
+  end,
   opts = {},
 }
