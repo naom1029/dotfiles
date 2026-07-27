@@ -10,7 +10,7 @@
     };
 
     hunk = {
-      url = "github:modem-dev/hunk";
+      url = "github:naom1029/hunk/fix/update-bun2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -24,6 +24,11 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            pipx = prev.pipx.overridePythonAttrs { doCheck = false; };
+          })
+        ];
       };
     in
     {

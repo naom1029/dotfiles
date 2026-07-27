@@ -22,7 +22,6 @@
     git-wt
     gh-dash
     online-judge-tools
-    claude-code
     tree-sitter
 
     # monitoring
