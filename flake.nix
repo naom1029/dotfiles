@@ -10,7 +10,7 @@
     };
 
     hunk = {
-      url = "github:naom1029/hunk/fix/update-bun2nix";
+      url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
