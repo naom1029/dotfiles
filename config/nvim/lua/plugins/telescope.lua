@@ -111,10 +111,10 @@ return {
               actions.close(prompt_bufnr)
               local selection = action_state.get_selected_entry()
               if selection then
-                vim.cmd('silent! SessionSave')
+                vim.cmd('silent! AutoSession save')
                 vim.cmd('silent! %bdelete!')
                 vim.cmd('cd ' .. selection[1])
-                vim.cmd('silent! SessionRestore')
+                vim.cmd('silent! AutoSession restore')
                 vim.notify('cd ' .. selection[1], vim.log.levels.INFO)
               end
             end)

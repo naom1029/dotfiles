@@ -31,10 +31,10 @@ return {
           indent = 2,
           padding = 1,
           action = function(dir)
-            vim.cmd('silent! SessionSave')
+            vim.cmd('silent! AutoSession save')
             vim.cmd('silent! %bdelete!')
             vim.fn.chdir(dir)
-            vim.cmd('silent! SessionRestore')
+            vim.cmd('silent! AutoSession restore')
           end,
         },
         {
@@ -54,7 +54,7 @@ return {
           { icon = ' ', key = 'n', desc = 'New File', action = ':enew' },
           { icon = ' ', key = 'g', desc = 'Find Text', action = ":lua require('telescope.builtin').live_grep()" },
           { icon = ' ', key = 'r', desc = 'Recent Files', action = ":lua require('telescope.builtin').oldfiles()" },
-          { icon = '󰁯', key = 's', desc = 'Restore Session', action = ':SessionRestore' },
+          { icon = '󰁯', key = 's', desc = 'Restore Session', action = ':AutoSession restore' },
           { icon = '󰒲', key = 'l', desc = 'Lazy', action = ':Lazy' },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },

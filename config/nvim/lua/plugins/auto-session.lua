@@ -13,8 +13,8 @@ return {
     bypass_save_filetypes = { 'oil', 'neo-tree', 'dashboard' },
   },
   keys = {
-    { '<leader>ps', '<cmd>SessionSearch<cr>', desc = '[P]roject [S]ession 検索' },
-    { '<leader>pr', '<cmd>SessionRestore<cr>', desc = '[P]roject Session [R]estore' },
-    { '<leader>pd', '<cmd>SessionDelete<cr>', desc = '[P]roject Session [D]elete' },
+    { '<leader>ps', '<cmd>AutoSession search<cr>', desc = '[P]roject [S]ession 検索' },
+    { '<leader>pr', '<cmd>AutoSession restore<cr>', desc = '[P]roject Session [R]estore' },
+    { '<leader>pd', '<cmd>AutoSession delete<cr>', desc = '[P]roject Session [D]elete' },
   },
 }
