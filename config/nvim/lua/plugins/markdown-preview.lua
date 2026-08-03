@@ -21,11 +21,10 @@ return {
     vim.g.mkdp_combine_preview_auto_refresh = 1
     vim.g.mkdp_echo_preview_url = 1
     vim.g.mkdp_browser = "" -- デフォルトブラウザ
-    vim.g.mkdp_theme = "dark" -- ダークテーマ
-    vim.g.mkdp_preview_options = {
-      mermaid = { -- Mermaidオプション
-        theme = "dark",
-      },
-    }
+    vim.g.mkdp_theme = "light" -- ライトテーマ（未設定にするとOSの設定に追従する）
+    -- mkdp_preview_options は意図的に未設定。
+    -- Mermaid のテーマは mkdp_theme に自動追従する（app/pages/index.jsx:289
+    -- `mermaid.initialize({ theme: this.state.theme, ...options.maid })`）。
+    -- なおオプションのキーは "mermaid" ではなく "maid" のため、明示指定する場合は注意。
   end,
 }
