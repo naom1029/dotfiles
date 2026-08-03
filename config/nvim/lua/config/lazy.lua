@@ -23,6 +23,11 @@ require('lazy').setup({
   spec = {
     { import = 'plugins' }, -- lua/plugins/ ディレクトリからインポート
   },
+  -- luarocksを要求するプラグインを使っていないため無効化
+  -- （有効のままだと hererocks の未インストールが checkhealth でERRORになる）
+  rocks = {
+    enabled = false,
+  },
   ui = {
     -- Nerd Fontが利用可能な場合はアイコンを使用
     icons = vim.g.have_nerd_font and {} or {
