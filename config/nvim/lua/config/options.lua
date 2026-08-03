@@ -61,6 +61,21 @@ vim.opt.cursorline = true
 -- カーソルの上下に最低限保持する行数
 vim.opt.scrolloff = 10
 
+-- セッションに保存する情報
+-- localoptions が無いとセッション復元後に filetype とハイライトが効かない（auto-session 推奨値）
+vim.opt.sessionoptions = {
+  'blank',
+  'buffers',
+  'curdir',
+  'folds',
+  'help',
+  'tabpages',
+  'winsize',
+  'winpos',
+  'terminal',
+  'localoptions',
+}
+
 -- ターミナルでの24ビットカラーを有効化
 vim.opt.termguicolors = true
 
