@@ -121,6 +121,12 @@
 | markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>cp` - プレビュートグル                  |
 | render-markdown.nvim | Markdown バッファ内リッチ描画 | `<leader>um` - 描画トグル                        |
 
+### CSV
+
+| プラグイン    | 説明                                | 主要コマンド/キーマップ            |
+| ------------- | ----------------------------------- | ---------------------------------- |
+| csvview.nvim  | CSV/TSV を表形式に整列表示（非破壊） | `<leader>ut` - 表示トグル          |
+
 ## キーマップ
 
 ### グローバルキーマップ
@@ -250,6 +256,12 @@
 
 - `<leader>cp` - Markdown ブラウザプレビューのトグル (markdown-preview)
 - `<leader>um` - Markdown バッファ内描画のトグル (render-markdown)
+
+#### CSV (csvview)
+
+- `<leader>ut` - CSV/TSV の表形式表示のトグル
+- `<Tab>` / `<S-Tab>` - 次/前のフィールドへ移動（表示中のみ）
+- `if` / `af` - フィールドを選択するテキストオブジェクト（表示中のみ）
 
 #### テキスト操作 (nvim-surround)
 
