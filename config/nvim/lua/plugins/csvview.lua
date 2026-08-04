@@ -9,7 +9,7 @@ return {
   keys = {
     { '<leader>ut', '<cmd>CsvViewToggle<cr>', desc = '[U]I: Toggle CSV [T]able view' },
     {
-      '<leader>cv',
+      '<leader>vc',
       function()
         -- csvview には列の固定・非表示機能が無く、横に長いCSVは追いきれない。
         -- csvlens なら --columns で表示列を絞れるため、外部ビューアに委ねる。
@@ -27,7 +27,7 @@ return {
           })
           :toggle()
       end,
-      desc = '[C]ode: CSV [V]iewer (csvlens)',
+      desc = '[V]iew [C]SV with csvlens',
       ft = { 'csv', 'tsv' },
     },
   },

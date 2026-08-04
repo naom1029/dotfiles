@@ -42,7 +42,7 @@
 | conform.nvim    | フォーマッター          | `<leader>cf` - フォーマット                                |
 | lazydev.nvim    | Neovim Lua 開発サポート | 自動有効                                                   |
 | nvim-treesitter-context | 関数/クラスのコンテキスト固定表示 | `<leader>uc` - トグル                          |
-| aerial.nvim | シンボルアウトライン    | `<leader>cs` - トグル<br>`]a/[a` - シンボル移動            |
+| aerial.nvim | シンボルアウトライン    | `<leader>vs` - トグル<br>`]a/[a` - シンボル移動            |
 | trouble.nvim | 診断/quickfix リスト UI | `<leader>xx` - 診断リスト（他 `<leader>x` 系）           |
 | ts-error-translator.nvim | TS エラーを平易に翻訳 | 自動有効                                             |
 
@@ -118,14 +118,14 @@
 
 | プラグイン              | 説明                           | 主要コマンド/キーマップ                          |
 | ----------------------- | ------------------------------ | ------------------------------------------------ |
-| markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>cp` - プレビュートグル                  |
+| markdown-preview.nvim   | Markdown ブラウザプレビュー    | `<leader>vp` - プレビュートグル                  |
 | render-markdown.nvim | Markdown バッファ内リッチ描画 | `<leader>um` - 描画トグル                        |
 
 ### CSV
 
 | プラグイン    | 説明                                | 主要コマンド/キーマップ            |
 | ------------- | ----------------------------------- | ---------------------------------- |
-| csvview.nvim  | CSV/TSV を表形式に整列表示（非破壊） | `<leader>ut` - 表示トグル<br>`<leader>cv` - csvlens で開く |
+| csvview.nvim  | CSV/TSV を表形式に整列表示（非破壊） | `<leader>ut` - 表示トグル<br>`<leader>vc` - csvlens で開く |
 
 ## キーマップ
 
@@ -195,7 +195,7 @@
 - `<leader>ca` - コードアクション
 - `<leader>cr` - リネーム（LSP 標準）
 - `<leader>cf` - コードフォーマット
-- `<leader>cs` - シンボルアウトライン（aerial）
+- `<leader>vs` - シンボルアウトライン（aerial）
 
 **UI トグル ([U]I グループ)：**
 - `<leader>uh` - Inlay Hints トグル
@@ -254,7 +254,7 @@
 
 #### Markdown
 
-- `<leader>cp` - Markdown ブラウザプレビューのトグル (markdown-preview)
+- `<leader>vp` - Markdown ブラウザプレビューのトグル (markdown-preview)
 - `<leader>um` - Markdown バッファ内描画のトグル (render-markdown)
 
 #### CSV (csvview)

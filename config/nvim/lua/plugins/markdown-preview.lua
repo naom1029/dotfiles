@@ -6,7 +6,7 @@ return {
   ft = { "markdown" },
   build = "cd app && yarn install",
   keys = {
-    { "<leader>cp", "<cmd>MarkdownPreviewToggle<cr>", desc = "[C]ode: Markdown [P]review" },
+    { "<leader>vp", "<cmd>MarkdownPreviewToggle<cr>", desc = "[V]iew: Markdown [P]review (browser)" },
   },
   -- plugin/mkdp.vim は読み込み時に s:init() を実行し、その時点の g:mkdp_* を見て
   -- autocmd を登録する。config では手遅れになるため init で設定すること。

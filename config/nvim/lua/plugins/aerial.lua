@@ -10,7 +10,7 @@ return {
   },
   cmd = { 'AerialToggle', 'AerialOpen', 'AerialNavToggle' },
   keys = {
-    { '<leader>cs', '<cmd>AerialToggle<cr>', desc = '[C]ode [S]ymbols outline (aerial)' },
+    { '<leader>vs', '<cmd>AerialToggle<cr>', desc = '[V]iew [S]ymbols outline (aerial)' },
     { ']a', '<cmd>AerialNext<cr>', desc = '次のシンボルへ (aerial)' },
     { '[a', '<cmd>AerialPrev<cr>', desc = '前のシンボルへ (aerial)' },
   },
