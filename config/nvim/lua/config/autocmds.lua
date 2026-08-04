@@ -10,6 +10,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- 外部プロセス（コーディングエージェント等）による変更をバッファへ取り込む
+-- autoread は「チェックしたときに再読み込みする」設定でしかないため、
+-- checktime を呼ぶ契機が無いとバッファは古いままになる。
+local auto_reload = vim.api.nvim_create_augroup('auto-reload-file', { clear = true })
+
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI', 'TermLeave' }, {
+  desc = 'Reload files changed outside of Neovim',
+  group = auto_reload,
+  callback = function()
+    -- 通常のファイルバッファのみ対象。コマンドラインウィンドウ中は checktime が失敗する
+    if vim.bo.buftype ~= '' or vim.fn.mode() == 'c' or vim.fn.getcmdwintype() ~= '' then
+      return
+    end
+    vim.cmd('checktime')
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileChangedShellPost', {
+  desc = 'Notify when a buffer was reloaded from disk',
+  group = auto_reload,
+  callback = function()
+    vim.notify('ファイルが外部で変更されたため再読み込みしました', vim.log.levels.INFO)
+  end,
+})
+
 -- カラースキーム変更時に自動保存
 vim.api.nvim_create_autocmd('ColorScheme', {
   desc = 'Save colorscheme selection for next session',
