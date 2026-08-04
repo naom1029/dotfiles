@@ -39,7 +39,7 @@ dotfiles/
 │   ├── lazygit.nix              # lazygit
 │   ├── neovim.nix               # neovim
 │   ├── tmux.nix                 # tmux + plugins
-│   ├── tools.nix                # fzf, ripgrep, fd, bat, eza, uv, claude-code, etc.
+│   ├── tools.nix                # fzf, ripgrep, fd, bat, eza, uv, csvlens, etc.
 │   └── wezterm.nix              # wezterm (Windows側に自動配置)
 └── config/                      # 設定ファイル（source参照で配置）
     ├── nvim/                    # Neovim lua設定
@@ -57,12 +57,13 @@ dotfiles/
 git, delta, gh, fzf, tmux, lazygit, neovim, bash, readline, direnv
 
 ### パッケージ管理
-ripgrep, fd, bat, eza, jq, tree, dust, trash-cli, vivid, zoxide, ghq, gh-dash, online-judge-tools, btop, lazydocker, herdr, uv, pipx, claude-code
+ripgrep, fd, bat, eza, jq, tree, csvlens, dust, trash-cli, vivid, zoxide, ghq, gh-dash, online-judge-tools, btop, lazydocker, herdr, uv, pipx
 
 ### Nix管理外（専用マネージャで管理）
 - **Rust**: rustup / cargo
 - **Node.js**: volta (node, npm, pnpm)
 - **npm tools**: ccstatusline, atcoder-cli
+- **Claude Code**: 公式インストーラ（最新版を追いたいため Nix 管理外。設定は `nix/programs/claude-code.nix` が担当）
 
 ## 日常運用
 

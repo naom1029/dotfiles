@@ -8,6 +8,7 @@
     jq
     jnv
     tree
+    csvlens
     dust
     trash-cli
     vivid
