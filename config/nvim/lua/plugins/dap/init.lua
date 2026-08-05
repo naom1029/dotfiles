@@ -53,13 +53,8 @@ return {
     require('plugins.dap.rust')()
     require('plugins.dap.vscode-js')()
 
-    -- .vscode/launch.json を一括読み込み（プロジェクトルートに存在する場合）
-    -- codelldb: c/cpp/rust、pwa-node: javascript/typescript
-    pcall(function()
-      require('dap.ext.vscode').load_launchjs(nil, {
-        codelldb = { 'c', 'cpp', 'rust' },
-        ['pwa-node'] = { 'javascript', 'typescript' },
-      })
-    end)
+    -- .vscode/launch.json はプラグイン組み込みの dap.launch.json provider が
+    -- dap.continue() のたびにオンデマンドで読むため、明示的な読み込みは不要
+    -- （:h dap-providers）。load_launchjs は deprecated。
   end,
 }
