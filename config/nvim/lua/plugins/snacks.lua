@@ -111,6 +111,27 @@ return {
     scroll = {
       enabled = true,
     },
+    -- indent: インデントガイド（レインボー + スコープ強調）
+    indent = {
+      enabled = true,
+      indent = {
+        char = '│',
+        hl = {
+          'RainbowRed',
+          'RainbowYellow',
+          'RainbowBlue',
+          'RainbowOrange',
+          'RainbowGreen',
+          'RainbowViolet',
+          'RainbowCyan',
+        },
+      },
+      scope = {
+        enabled = true,
+        underline = true,
+        char = '│',
+      },
+    },
   },
   keys = {
     {
@@ -215,6 +236,33 @@ return {
     },
   },
   config = function(_, opts)
+    -- インデントガイドのレインボー色（カラースキーム切替時に消えるため都度再適用）
+    local function set_rainbow_hl()
+      local colors = {
+        RainbowRed = '#E06C75',
+        RainbowYellow = '#E5C07B',
+        RainbowBlue = '#61AFEF',
+        RainbowOrange = '#D19A66',
+        RainbowGreen = '#98C379',
+        RainbowViolet = '#C678DD',
+        RainbowCyan = '#56B6C2',
+      }
+      for name, fg in pairs(colors) do
+        vim.api.nvim_set_hl(0, name, { fg = fg })
+      end
+      -- scopeガイドの色はテーマのibl用定義（IblScope）があればそれに合わせる
+      -- （snacksのデフォルトはSpecialリンクで、テーマによって色味が変わるため）
+      local ibl_scope = vim.api.nvim_get_hl(0, { name = 'IblScope', link = false })
+      if ibl_scope.fg then
+        vim.api.nvim_set_hl(0, 'SnacksIndentScope', { fg = ibl_scope.fg })
+      end
+    end
+    set_rainbow_hl()
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      group = vim.api.nvim_create_augroup('snacks-indent-rainbow', { clear = true }),
+      callback = set_rainbow_hl,
+    })
+
     -- LazyGit終了時にGit状態の表示を追従させる
     -- （gitsigns/neo-treeのwatcherだけではgitバッジ更新が遅れる場合があるため）
     vim.api.nvim_create_autocmd('TermClose', {
@@ -230,6 +278,15 @@ return {
             vim.notify('Current branch: ' .. branch, vim.log.levels.INFO)
           end
         end, 100)
+      end,
+    })
+
+    -- コミットメッセージ等にはインデントガイドを出さない
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'gitcommit',
+      group = vim.api.nvim_create_augroup('snacks-indent-exclude', { clear = true }),
+      callback = function(ev)
+        vim.b[ev.buf].snacks_indent = false
       end,
     })
 

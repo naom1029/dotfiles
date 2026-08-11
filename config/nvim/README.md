@@ -96,7 +96,7 @@
 | which-key.nvim        | キーバインドガイド             | キー押下で自動表示                                      |
 | lualine.nvim          | ステータスライン               | 自動表示                                                |
 | todo-comments.nvim    | TODO/FIXME ハイライト          | 自動ハイライト<br>`]t/[t` - 次/前の TODO へ             |
-| indent-blankline.nvim | インデントガイド（レインボー） | 自動表示                                                |
+| snacks.nvim (indent)  | インデントガイド（レインボー） | 自動表示                                                |
 
 ### ユーティリティ
 
