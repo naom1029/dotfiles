@@ -5,8 +5,10 @@
 -- （filetypes, on_attach 等）はデフォルト定義が使われる。
 
 return {
+  -- mason.nvimがmason/binをPATHに追加するため絶対パス指定は不要
+  -- （Mason未使用環境ではシステムのclangdにフォールバックできる）
   cmd = {
-    vim.fn.stdpath('data') .. '/mason/bin/clangd',
+    'clangd',
     '--background-index',
     '--header-insertion=never',
     '--clang-tidy',

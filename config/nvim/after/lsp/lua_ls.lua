@@ -1,17 +1,14 @@
 -- Lua Language Server 設定
+-- after/lsp/ はNeovimネイティブのLSP設定ディレクトリ（:h lsp-config）。
+-- ここで指定したキーだけが nvim-lspconfig のデフォルト定義を上書きする。
+-- 注意: workspace.library と diagnostics.globals は lazydev.nvim が
+-- 動的に管理するため、ここには書かないこと（静的に書くとlazydevが無効化される）
 
 return {
-  cmd = { vim.fn.stdpath('data') .. '/mason/bin/lua-language-server' },
   settings = {
     Lua = {
       completion = {
         callSnippet = 'Replace',
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
       },
       telemetry = {
         enable = false,
