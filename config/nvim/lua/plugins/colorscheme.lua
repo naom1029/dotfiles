@@ -49,7 +49,7 @@ return {
         end,
       }
 
-      -- 保存されたカラースキームを読み込む（なければarcticをデフォルトに）
+      -- 保存されたカラースキームを読み込む（なければkanagawa-dragonをデフォルトに）
       local cache_dir = vim.fn.stdpath 'cache'
       local colorscheme_file = cache_dir .. '/colorscheme.txt'
       local file = io.open(colorscheme_file, 'r')
@@ -62,8 +62,9 @@ return {
         saved_colorscheme = saved_colorscheme:gsub('\n', '')
       end
 
-      -- 保存されたカラースキームがあればそれを使用、なければarcticをデフォルトに
-      local colorscheme_to_load = saved_colorscheme or 'kanagawa-dragon'
+      -- 保存されたカラースキームがあればそれを使用（空ファイル対策で空白以外の文字を要求）
+      local colorscheme_to_load = (saved_colorscheme and saved_colorscheme:match('%S')) and saved_colorscheme
+        or 'kanagawa-dragon'
 
       -- カラースキームを適用（エラーハンドリング付き）
       local ok = pcall(vim.cmd.colorscheme, colorscheme_to_load)
@@ -120,7 +121,7 @@ return {
     },
   },
 
-  -- arctic.nvim
+  -- arctic.nvim (VSCode Dark Modern風)
   {
     'rockyzhang24/arctic.nvim',
     branch = 'v2',

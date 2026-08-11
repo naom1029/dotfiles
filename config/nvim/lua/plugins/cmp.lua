@@ -15,7 +15,6 @@ return {
         return 'make install_jsregexp'
       end)(),
     },
-    'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
   },
@@ -71,7 +70,6 @@ return {
           group_index = 0, -- lazydevの推奨設定
         },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'path' },
       },
     }

@@ -2,7 +2,8 @@
 -- Git差分表示とマージツール
 
 return {
-  "sindrets/diffview.nvim",
+  -- 本家(sindrets)は2024-06以降停止しているため、活動中の後継フォークを使用
+  "dlyongemallo/diffview-plus.nvim",
   cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
   keys = {
     {
