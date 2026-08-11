@@ -9,7 +9,7 @@ return {
     suppressed_dirs = { '~/', '~/Downloads', '~/Documents', '/' },
     auto_restore = false,
     auto_save = true,
-    use_git_branch = true,
+    git_use_branch_name = true,
     bypass_save_filetypes = { 'oil', 'neo-tree', 'dashboard' },
   },
   keys = {
