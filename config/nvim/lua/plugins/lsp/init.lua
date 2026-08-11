@@ -48,13 +48,6 @@ return {
             group = highlight_augroup,
             callback = vim.lsp.buf.clear_references,
           })
-          vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-            callback = function(event2)
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buf = event2.buf })
-            end,
-          })
         end
 
         -- Inlay Hints トグル（UI）
@@ -63,6 +56,18 @@ return {
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
           end, '[U]I: Toggle inlay [H]ints')
         end
+      end,
+    })
+
+    -- LSPデタッチ時にドキュメントハイライトの後始末をする
+    -- 注意: LspAttachコールバックの中で登録すると、augroupのclearにより
+    -- 先にアタッチしたバッファのハンドラが消えるバグになるため、ここで1回だけ登録する
+    vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+    vim.api.nvim_create_autocmd('LspDetach', {
+      group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+      callback = function(event)
+        vim.lsp.buf.clear_references()
+        vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buf = event.buf })
       end,
     })
 
