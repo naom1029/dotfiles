@@ -41,6 +41,11 @@ return {
     },
     -- キーチェーンのドキュメント
     spec = {
+      -- ネイティブLSPキー（:h lsp-defaults）の説明を日本語化
+      { 'gr', group = 'LSP' },
+      { 'grn', desc = 'リネーム' },
+      { 'gra', desc = 'コードアクション', mode = { 'n', 'x' } },
+      { 'grx', desc = 'CodeLens実行' },
       { '<leader>b', group = '[B]uffer' },
       { '<leader>c', group = '[C]ode' , mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ebug' },

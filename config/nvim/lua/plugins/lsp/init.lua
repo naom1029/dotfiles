@@ -24,15 +24,18 @@ return {
         end
 
         -- キーマップ
-        -- Neovim 0.11+ の組み込みデフォルトをそのまま使う（:h lsp-defaults）:
-        --   grn - リネーム / gra - コードアクション / grr - 参照一覧
-        --   gri - 実装へジャンプ / grt - 型定義へジャンプ / gO - ドキュメントシンボル
-        --   K - ホバー / <C-s> (insert) - シグネチャヘルプ
-        -- ここではネイティブに存在しないものだけ定義する
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map('<leader>sd', require('telescope.builtin').lsp_document_symbols, '[S]earch [D]ocument symbols')
-        map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[S]earch workspace [S]ymbols')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        -- キー体系は Neovim 0.11+ の組み込みデフォルト（:h lsp-defaults）に従い、
+        -- 一覧を表示する系はquickfixの代わりにTelescopeで上書きする。
+        -- grn（リネーム）/ gra（コードアクション）/ K / <C-s> は組み込みのまま
+        local builtin = require('telescope.builtin')
+        map('grd', builtin.lsp_definitions, '定義へジャンプ')
+        map('grD', vim.lsp.buf.declaration, '宣言へジャンプ')
+        map('grr', builtin.lsp_references, '参照一覧')
+        map('gri', builtin.lsp_implementations, '実装へジャンプ')
+        map('grt', builtin.lsp_type_definitions, '型定義へジャンプ')
+        map('gO', builtin.lsp_document_symbols, 'ドキュメントシンボル')
+        map('<leader>sd', builtin.lsp_document_symbols, '[S]earch [D]ocument symbols')
+        map('<leader>sS', builtin.lsp_dynamic_workspace_symbols, '[S]earch workspace [S]ymbols')
 
         -- ドキュメントハイライト
         local client = vim.lsp.get_client_by_id(event.data.client_id)
