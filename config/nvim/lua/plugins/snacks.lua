@@ -30,6 +30,12 @@ return {
     terminal = {
       enabled = true,
     },
+    -- lazygit: フロートの枠線（テーマ連動のTUI統合はデフォルトのまま）
+    lazygit = {
+      win = {
+        border = 'rounded',
+      },
+    },
     -- input: vim.ui.input の見た目改善
     input = {
       enabled = true,
@@ -171,6 +177,35 @@ return {
       desc = 'ブラウザで開く (GitHub permalink)',
       mode = { 'n', 'v' },
     },
+    -- LazyGit
+    {
+      '<leader>gl',
+      function()
+        Snacks.lazygit()
+      end,
+      desc = 'LazyGit を開く',
+    },
+    {
+      '<leader>gf',
+      function()
+        Snacks.lazygit({ cwd = vim.fn.expand('%:p:h') })
+      end,
+      desc = '現在のファイルのリポジトリでLazyGit',
+    },
+    {
+      '<leader>gF',
+      function()
+        Snacks.lazygit.log_file()
+      end,
+      desc = '現在のファイルのログ（フィルタ表示）',
+    },
+    {
+      '<leader>gc',
+      function()
+        vim.cmd.edit(vim.fn.fnameescape(vim.fn.expand('~/src/github.com/naom1029/dotfiles/nix/programs/lazygit.nix')))
+      end,
+      desc = 'LazyGit 設定を開く（nix）',
+    },
     {
       '<leader>bd',
       function()
@@ -180,6 +215,24 @@ return {
     },
   },
   config = function(_, opts)
+    -- LazyGit終了時にGit状態の表示を追従させる
+    -- （gitsigns/neo-treeのwatcherだけではgitバッジ更新が遅れる場合があるため）
+    vim.api.nvim_create_autocmd('TermClose', {
+      pattern = '*lazygit',
+      group = vim.api.nvim_create_augroup('lazygit-refresh', { clear = true }),
+      callback = function()
+        vim.defer_fn(function()
+          vim.cmd('checktime')
+          pcall(vim.cmd, 'Gitsigns refresh')
+          pcall(vim.cmd, 'Neotree refresh')
+          local branch = vim.fn.system('git branch --show-current 2>/dev/null'):gsub('\n', '')
+          if branch ~= '' then
+            vim.notify('Current branch: ' .. branch, vim.log.levels.INFO)
+          end
+        end, 100)
+      end,
+    })
+
     require('snacks').setup(opts)
   end,
 }

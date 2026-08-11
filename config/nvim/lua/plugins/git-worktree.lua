@@ -56,19 +56,5 @@ return {
         vim.notify('Worktree deleted: ' .. metadata.path, vim.log.levels.INFO)
       end
     end)
-
-    -- LazyGit との統合強化
-    -- LazyGit 終了時に worktree の状態を確認
-    vim.api.nvim_create_autocmd('TermClose', {
-      pattern = '*lazygit',
-      callback = function()
-        -- ファイル変更を検知
-        vim.cmd('checktime')
-
-        -- worktree が切り替わった可能性があるため、cwd を確認
-        local current_dir = vim.fn.getcwd()
-        vim.notify('Current directory: ' .. current_dir, vim.log.levels.DEBUG)
-      end,
-    })
   end,
 }

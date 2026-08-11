@@ -82,7 +82,7 @@
 | プラグイン          | 説明                   | 主要コマンド/キーマップ                                                                                                                      |
 | ------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | gitsigns.nvim       | Git 差分表示・操作     | `<leader>gd` - diff<br>`<leader>gb` - blame<br>`<leader>gp` - preview<br>`]h/[h` - hunk移動 |
-| lazygit.nvim        | LazyGit TUI 統合       | `<leader>gl` - LazyGit 起動<br>`<leader>gc` - 設定画面<br>`<leader>gf` - 現在のファイル                                                    |
+| snacks.nvim (lazygit) | LazyGit TUI 統合     | `<leader>gl` - LazyGit 起動<br>`<leader>gf` - ファイルのリポジトリで起動<br>`<leader>gF` - ファイルのログ<br>`<leader>gc` - 設定 (nix)      |
 | git-worktree.nvim   | Git worktree 管理      | `<leader>wl` - 一覧・切り替え<br>`<leader>wc` - 新規作成                                                                                    |
 | diffview.nvim       | Git diff/履歴ビューア  | `<leader>gD` - プロジェクト diff<br>`<leader>gH` - ファイル履歴 |
 
@@ -314,11 +314,12 @@
 - `<leader>gD` - Diffview トグル（プロジェクト全体の diff）
 - `<leader>gH` - 現在のファイルの履歴を表示
 
-#### LazyGit
+#### LazyGit (snacks.lazygit)
 
 - `<leader>gl` - LazyGit 起動
-- `<leader>gc` - LazyGit 設定
-- `<leader>gf` - 現在のファイルで LazyGit
+- `<leader>gf` - 現在のファイルのリポジトリで LazyGit
+- `<leader>gF` - 現在のファイルのログ（フィルタ表示。rebase 系操作は `<esc>` でフィルタ解除してから）
+- `<leader>gc` - LazyGit 設定を開く（nix/programs/lazygit.nix）
 
 #### Git Worktree
 

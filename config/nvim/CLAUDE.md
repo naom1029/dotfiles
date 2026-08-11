@@ -40,7 +40,6 @@ nvim/
 │       ├── todo-comments.lua # TODOハイライト
 │       ├── sleuth.lua     # インデント検出
 │       ├── neo-tree.lua   # ファイルエクスプローラー
-│       ├── lazygit.lua    # Git TUI
 │       ├── claudecode.lua # Claude Code統合
 │       └── snacks.lua     # ターミナル機能
 ├── README.md              # ユーザー向けドキュメント
