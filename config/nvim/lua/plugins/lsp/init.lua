@@ -24,14 +24,14 @@ return {
         end
 
         -- キーマップ
+        -- Neovim 0.11+ の組み込みデフォルトをそのまま使う（:h lsp-defaults）:
+        --   grn - リネーム / gra - コードアクション / grr - 参照一覧
+        --   gri - 実装へジャンプ / grt - 型定義へジャンプ / gO - ドキュメントシンボル
+        --   K - ホバー / <C-s> (insert) - シグネチャヘルプ
+        -- ここではネイティブに存在しないものだけ定義する
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        map('gy', require('telescope.builtin').lsp_type_definitions, '[G]oto t[Y]pe definition')
         map('<leader>sd', require('telescope.builtin').lsp_document_symbols, '[S]earch [D]ocument symbols')
         map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[S]earch workspace [S]ymbols')
-        map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
-        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         -- ドキュメントハイライト

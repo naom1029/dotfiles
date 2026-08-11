@@ -26,21 +26,4 @@ require('config.keymaps')   -- キーマップ
 require('config.autocmds')  -- Autocommands
 require('config.lazy')      -- lazy.nvim & プラグイン
 
--- v0.11 のデフォルト LSP グローバルキーマップを削除（Telescope を使用するため）
-local function unmap(mode, lhs)
-  pcall(vim.keymap.del, mode, lhs)
-end
-
-local function clear_lsp_global_keys()
-  local normal = { 'gra', 'gri', 'grn', 'grr', 'grt', 'gO' }
-  for _, k in ipairs(normal) do
-    unmap('n', k)
-  end
-  unmap('x', 'gra')
-  -- 必要なら <C-s> も削除
-  -- unmap('i', '<C-s>')
-end
-
-clear_lsp_global_keys()
-
 -- vim: ts=2 sts=2 sw=2 et
