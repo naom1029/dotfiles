@@ -7,6 +7,9 @@ return {
     'nvim-tree/nvim-web-devicons', -- アイコン表示
   },
   init = function()
+    -- barbar側のデフォルト自動setupを止める（configのsetupと二重初期化になるため）
+    vim.g.barbar_auto_setup = false
+
     -- キーマップを設定
     local map = vim.keymap.set
 
