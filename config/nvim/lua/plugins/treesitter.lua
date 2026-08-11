@@ -52,7 +52,11 @@ return {
         end
         local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
         if lang and pcall(vim.treesitter.start, buf, lang) then
-          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          -- indentsクエリを持たない言語（diff, vimdoc等）で差し替えると
+          -- インデントが常に0になるため、クエリがある場合のみ有効化する
+          if vim.treesitter.query.get(lang, 'indents') then
+            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
         end
       end,
     })
