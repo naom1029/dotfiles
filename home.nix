@@ -20,6 +20,7 @@
     ./nix/programs/hunk.nix
     ./nix/programs/jj.nix
     ./nix/programs/lazygit.nix
+    ./nix/programs/mise.nix
     ./nix/programs/neovim.nix
     ./nix/programs/tmux.nix
     ./nix/programs/tools.nix

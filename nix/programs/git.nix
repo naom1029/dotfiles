@@ -5,6 +5,12 @@
     enable = true;
     ignores = [
       "**/.claude/settings.local.json"
+      # miseを使っているのは自分だけなので、プロジェクトの mise.toml は
+      # チーム共有しない個人設定として扱い、常に無視する。
+      "**/mise.toml"
+      "**/.mise.toml"
+      "**/mise.local.toml"
+      "**/.mise.local.toml"
     ];
     includes = [
       { path = "~/.config/git/local.gitconfig"; }
