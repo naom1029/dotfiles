@@ -109,7 +109,7 @@
 | memo.nvim     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索<br>`<leader>md` - 今日の予実メモ              |
 | nvim-rooter   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
 | flash.nvim    | ラベルジャンプ | `s` - ジャンプ<br>`S` - Treesitter 選択                                                  |
-| dressing.nvim     | 入力/選択 UI の改善            | 自動有効（vim.ui.input/select を装飾）                                                       |
+| snacks.nvim (input/picker) | 入力/選択 UI の改善   | 自動有効（vim.ui.input/select を置き換え）                                                   |
 | auto-session  | セッション自動保存/復元        | 自動有効<br>`<leader>ps` - セッション検索<br>`<leader>pd` - セッション削除                   |
 | hardtime.nvim | Vim効率化トレーニング          | 自動有効（非効率な操作を制限）                                                               |
 | vim-sleuth        | インデント自動検出             | 自動有効                                                                                     |

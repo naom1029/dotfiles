@@ -14,7 +14,6 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'nvim-tree/nvim-web-devicons' },
   },
   config = function()
@@ -32,16 +31,10 @@ return {
         lsp_document_symbols = { initial_mode = 'normal' },
         lsp_dynamic_workspace_symbols = { initial_mode = 'normal' },
       },
-      extensions = {
-        ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
-        },
-      },
     }
 
     -- Telescope拡張機能を有効化
     pcall(require('telescope').load_extension, 'fzf')
-    pcall(require('telescope').load_extension, 'ui-select')
 
     -- キーマップ設定
     local builtin = require 'telescope.builtin'

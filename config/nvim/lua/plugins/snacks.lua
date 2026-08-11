@@ -17,6 +17,22 @@ return {
     terminal = {
       enabled = true,
     },
+    -- input: vim.ui.input の見た目改善（dressing.nvim の後継）
+    input = {
+      enabled = true,
+    },
+    -- picker: vim.ui.select を snacks picker に置き換え（ui_select はデフォルト有効）
+    picker = {
+      enabled = true,
+      win = {
+        input = {
+          keys = {
+            -- 挿入モードからもEsc1回で閉じる
+            ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+          },
+        },
+      },
+    },
     -- ダッシュボード: 最近開いたファイルやプロジェクトを表示
     dashboard = {
       enabled = true,
