@@ -13,7 +13,6 @@ return {
   config = function()
     -- Mason セットアップ
     require('mason').setup()
-    require('mason-lspconfig').setup()
 
     -- LSP アタッチ時のキーマップ設定
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -67,36 +66,22 @@ return {
       end,
     })
 
-    -- Capabilities 設定
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-    capabilities.offsetEncoding = { 'utf-8' }
+    -- Capabilities 設定（cmp の補完機能を全サーバーに通知）
+    -- vim.lsp.config('*') は全サーバー共通のベース設定
+    -- サーバー個別設定は after/lsp/<server_name>.lua に配置（:h lsp-config）
+    vim.lsp.config('*', {
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    })
 
-    -- サーバー自動セットアップ
-    -- 個別設定は lua/plugins/lsp/<server_name>.lua に配置
+    -- mason-lspconfig v2: インストール済みサーバーを vim.lsp.enable() で自動有効化する
+    -- （v1 の handlers オプションは廃止されているため使用しない）
     require('mason-lspconfig').setup({
       ensure_installed = {
         'lua_ls',
         'jsonls',
         'ts_ls',
         'pyright',
-      },
-      handlers = {
-        -- デフォルトハンドラー
-        function(server_name)
-          local server_config = { capabilities = capabilities }
-
-          -- 個別設定ファイルを読み込み
-          local config_path = vim.fn.stdpath('config') .. '/lua/plugins/lsp/' .. server_name .. '.lua'
-          if vim.fn.filereadable(config_path) == 1 then
-            local ok, custom_config = pcall(dofile, config_path)
-            if ok and type(custom_config) == 'table' then
-              server_config = vim.tbl_deep_extend('force', server_config, custom_config)
-            end
-          end
-
-          require('lspconfig')[server_name].setup(server_config)
-        end,
+        'clangd',
       },
     })
 

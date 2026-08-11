@@ -26,7 +26,8 @@ nvim/
 │   │   ├── autocmds.lua   # Autocommands
 │   │   └── lazy.lua       # lazy.nvim初期化
 │   └── plugins/           # プラグイン設定（各ファイルが1プラグイン）
-│       ├── lsp.lua        # LSP + Mason
+│       ├── lsp/           # LSP + Mason
+│       │   └── init.lua   # 共通設定（キーマップ・capabilities・mason-lspconfig）
 │       ├── cmp.lua        # 補完
 │       ├── telescope.lua  # ファジーファインダー
 │       ├── treesitter.lua # シンタックスハイライト
@@ -163,16 +164,24 @@ return {
 
 ### 5. LSP サーバーの追加
 
-`lua/plugins/lsp.lua` の `servers` テーブルを編集：
+1. `lua/plugins/lsp/init.lua` の `mason-lspconfig` の `ensure_installed` にサーバー名（lspconfig名）を追加
+2. デフォルト設定を上書きしたい場合のみ、`after/lsp/<サーバー名>.lua` を作成して設定テーブルを return する
+   - `after/lsp/` は Neovim ネイティブのLSP設定ディレクトリ（`:h lsp-config`）。runtimepath の
+     最後にマージされるため、指定したキーだけが nvim-lspconfig のデフォルト定義を上書きする
+   - `root_dir` 関数ではなく `root_markers` を使う（リスト順 = 優先順位、ネストで同順位。`:h lsp-root_markers`）
 
 ```lua
-local servers = {
-  lua_ls = { ... },  -- 既存
-  -- 新しいサーバーを追加
-  pyright = {},
-  ts_ls = {},
+-- after/lsp/pyright.lua の例
+return {
+  settings = {
+    python = { ... },
+  },
 }
 ```
+
+**注意**: mason-lspconfig v2 では `handlers` オプションが廃止されている（渡しても警告なしで無視される）。
+インストール済みサーバーは `vim.lsp.enable()` で自動有効化される。
+全サーバー共通の設定（capabilities 等）は `lua/plugins/lsp/init.lua` の `vim.lsp.config('*', ...)` に置く。
 
 自動インストールするツール（フォーマッターなど）は `ensure_installed` に追加：
 

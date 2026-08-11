@@ -337,5 +337,5 @@
 ### LSP が動作しない
 
 1. `:Mason` で LSP サーバーがインストールされているか確認
-2. `:LspInfo` で LSP の状態確認
-3. `lua/plugins/lsp.lua` でサーバー設定を確認
+2. `:checkhealth vim.lsp` で LSP の状態確認
+3. `lua/plugins/lsp/init.lua`（共通設定）と `after/lsp/<サーバー名>.lua`（個別設定）を確認
