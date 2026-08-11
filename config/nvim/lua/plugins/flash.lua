@@ -17,7 +17,8 @@ return {
     },
     {
       'S',
-      mode = { 'n', 'x', 'o' },
+      -- visualモードのSはnvim-surround（サラウンド追加）に譲る
+      mode = { 'n', 'o' },
       function()
         require('flash').treesitter()
       end,
