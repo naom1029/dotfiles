@@ -13,7 +13,7 @@ return {
       pattern = 'markdown',
       callback = function(event)
         vim.keymap.set('n', '<leader>um', '<cmd>RenderMarkdown toggle<cr>', {
-          buffer = event.buf,
+          buf = event.buf,
           desc = '[U]I: Toggle Render [M]arkdown',
         })
       end,

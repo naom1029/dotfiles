@@ -9,9 +9,8 @@ vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'Exit insert mode (same as Esc)' 
 
 -- 診断リスト/quickfix/loclist は trouble.nvim に集約（<leader>x 系）
 
--- 診断間を移動
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic' })
+-- 診断間の移動は Neovim 0.11+ の組み込みデフォルトを使う（:h ]d-default）
+-- ]d / [d - 次/前の診断へ、]D / [D - 最後/最初の診断へ
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 
 -- ターミナルモードを抜ける

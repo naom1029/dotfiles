@@ -13,7 +13,7 @@ return {
       pattern = "markdown",
       callback = function(event)
         vim.keymap.set("n", "<leader>vp", "<cmd>MarkdownPreviewToggle<cr>", {
-          buffer = event.buf,
+          buf = event.buf,
           desc = "[V]iew: Markdown [P]review (browser)",
         })
       end,
