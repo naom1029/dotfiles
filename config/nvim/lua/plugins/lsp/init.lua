@@ -3,8 +3,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = {} },
     'hrsh7th/cmp-nvim-lsp',
@@ -85,20 +85,17 @@ return {
       },
     })
 
-    -- ツール自動インストール
+    -- ツール自動インストール（LSP以外のフォーマッター・リンター・デバッガー）
+    -- LSPサーバーは mason-lspconfig の ensure_installed で宣言する（重複させない）
     -- clang-format, black等のPython依存ツールは apt/pipx で手動インストール
     require('mason-tool-installer').setup({
       ensure_installed = {
-        'lua-language-server',
         'stylua',
-        'json-lsp',
         'prettier',
         'eslint_d',
-        'typescript-language-server',
         'js-debug-adapter',
         'codelldb',
         'cspell',
-        'pyright',
       },
     })
   end,
