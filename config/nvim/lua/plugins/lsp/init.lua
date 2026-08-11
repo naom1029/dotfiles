@@ -78,17 +78,40 @@ return {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
     })
 
-    -- mason-lspconfig v2: インストール済みサーバーを vim.lsp.enable() で自動有効化する
-    -- （v1 の handlers オプションは廃止されているため使用しない）
+    -- 有効化するLSPサーバー（lspconfig名）
+    -- mason-lspconfig v2 の automatic_enable はMasonでインストール済みの
+    -- サーバーを無差別に有効化する（pylsp/pyright/ruffの3重アタッチ等の原因）ため
+    -- 無効にし、kickstart.nvim方式で意図したサーバーだけを明示的に有効化する。
+    -- ※ AstroNvim流に自動有効化を残して除外だけ指定する
+    --    automatic_enable = { exclude = { ... } } という選択肢もある
+    local servers = {
+      'bashls',
+      'clangd',
+      'cssls',
+      'cssmodules_ls',
+      'docker_compose_language_service',
+      'dockerls',
+      'dotls',
+      'html',
+      'jsonls',
+      'lua_ls',
+      'markdown_oxide',
+      'marksman',
+      'nginx_language_server',
+      'pyright',
+      'ruff',
+      'rust_analyzer',
+      'svelte',
+      'tailwindcss',
+      'ts_ls',
+      'yamlls',
+    }
+
     require('mason-lspconfig').setup({
-      ensure_installed = {
-        'lua_ls',
-        'jsonls',
-        'ts_ls',
-        'pyright',
-        'clangd',
-      },
+      ensure_installed = servers,
+      automatic_enable = false,
     })
+    vim.lsp.enable(servers)
 
     -- ツール自動インストール（LSP以外のフォーマッター・リンター・デバッガー）
     -- LSPサーバーは mason-lspconfig の ensure_installed で宣言する（重複させない）

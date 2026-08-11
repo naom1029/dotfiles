@@ -164,7 +164,9 @@ return {
 
 ### 5. LSP サーバーの追加
 
-1. `lua/plugins/lsp/init.lua` の `mason-lspconfig` の `ensure_installed` にサーバー名（lspconfig名）を追加
+1. `lua/plugins/lsp/init.lua` の `servers` リストにサーバー名（lspconfig名）を追加
+   - このリストが `ensure_installed`（Masonでのインストール）と `vim.lsp.enable()`（有効化）の両方に使われる
+   - `automatic_enable = false` にしているため、`:Mason` で手動インストールしただけのサーバーは有効化されない
 2. デフォルト設定を上書きしたい場合のみ、`after/lsp/<サーバー名>.lua` を作成して設定テーブルを return する
    - `after/lsp/` は Neovim ネイティブのLSP設定ディレクトリ（`:h lsp-config`）。runtimepath の
      最後にマージされるため、指定したキーだけが nvim-lspconfig のデフォルト定義を上書きする
