@@ -18,20 +18,18 @@ return {
           vim.notify('ファイルが保存されていません', vim.log.levels.WARN)
           return
         end
-        require('toggleterm.terminal').Terminal
-          :new({
-            cmd = 'csvlens -d auto ' .. vim.fn.shellescape(file),
-            direction = 'float',
-            close_on_exit = true,
-            hidden = true,
-          })
-          :toggle()
+        if vim.fn.executable('csvlens') == 0 then
+          vim.notify('csvlens がインストールされていません', vim.log.levels.WARN)
+          return
+        end
+        Snacks.terminal('csvlens -d auto ' .. vim.fn.shellescape(file), {
+          win = { position = 'float', border = 'rounded' },
+        })
       end,
       desc = '[V]iew [C]SV with csvlens',
       ft = { 'csv', 'tsv' },
     },
   },
-  dependencies = { 'akinsho/toggleterm.nvim' },
   opts = {
     parser = {
       comments = { '#', '//' },

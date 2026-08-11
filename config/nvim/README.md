@@ -105,7 +105,7 @@
 | snacks.nvim       | QoL 機能の詰め合わせ           | `<leader>.` - ダッシュボード<br>`]r`/`[r` - 同一シンボル参照へジャンプ（words）<br>その他: terminal, bigfile, quickfile, scroll, rename(neo-tree/oil 連携) を有効化 |
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
-| toggleterm.nvim   | ターミナルトグル               | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |
+| snacks.nvim (terminal) | ターミナルトグル          | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |
 | nvim-rooter   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
 | flash.nvim    | ラベルジャンプ | `s` - ジャンプ<br>`S` - Treesitter 選択                                                  |
 | snacks.nvim (input/picker) | 入力/選択 UI の改善   | 自動有効（vim.ui.input/select を置き換え）                                                   |
@@ -269,7 +269,7 @@
 - `ds{char}` - 囲みを削除（例: `ds"` でダブルクォートを削除）
 - `cs{old}{new}` - 囲みを変更（例: `cs"'` でダブルクォートをシングルクォートに）
 
-#### ターミナル (toggleterm.nvim)
+#### ターミナル (snacks.terminal)
 
 - `<C-\>` - ターミナルをトグル（デフォルト: 下部）
 - `<leader>tf` - フローティングターミナルを開く

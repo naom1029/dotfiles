@@ -1,3 +1,16 @@
+-- シェル用ターミナルの共通win設定
+-- ターミナルモードから<C-h/j/k/l>で直接ウィンドウ移動できるようにする
+-- （lazygit等のTUIウィンドウにキーを注入しないよう、シェル用のキーマップ側でのみ使う）
+local function term_win(win)
+  win.keys = {
+    term_win_h = { '<C-h>', '<cmd>wincmd h<cr>', mode = 't', desc = '左のウィンドウへ' },
+    term_win_j = { '<C-j>', '<cmd>wincmd j<cr>', mode = 't', desc = '下のウィンドウへ' },
+    term_win_k = { '<C-k>', '<cmd>wincmd k<cr>', mode = 't', desc = '上のウィンドウへ' },
+    term_win_l = { '<C-l>', '<cmd>wincmd l<cr>', mode = 't', desc = '右のウィンドウへ' },
+  }
+  return win
+end
+
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -17,7 +30,7 @@ return {
     terminal = {
       enabled = true,
     },
-    -- input: vim.ui.input の見た目改善（dressing.nvim の後継）
+    -- input: vim.ui.input の見た目改善
     input = {
       enabled = true,
     },
@@ -100,6 +113,39 @@ return {
         Snacks.dashboard()
       end,
       desc = 'Dashboard',
+    },
+    -- ターミナル
+    -- 方向ごとにcountでターミナルIDを分離する（同一IDだと最初に開いた
+    -- 位置・サイズが固定され、tf/th/tvの切替が効かなくなるため）
+    -- 下部=1（<C-\>と共有）、フロート=2、右=3
+    {
+      '<C-\\>',
+      function()
+        Snacks.terminal.toggle(nil, { count = 1, win = term_win({ position = 'bottom', height = 0.3 }) })
+      end,
+      desc = 'ターミナルをトグル（下部）',
+      mode = { 'n', 't', 'i' },
+    },
+    {
+      '<leader>th',
+      function()
+        Snacks.terminal.toggle(nil, { count = 1, win = term_win({ position = 'bottom', height = 0.3 }) })
+      end,
+      desc = '水平分割ターミナル',
+    },
+    {
+      '<leader>tf',
+      function()
+        Snacks.terminal.toggle(nil, { count = 2, win = term_win({ position = 'float', border = 'rounded' }) })
+      end,
+      desc = 'フローティングターミナル',
+    },
+    {
+      '<leader>tv',
+      function()
+        Snacks.terminal.toggle(nil, { count = 3, win = term_win({ position = 'right', width = 0.4 }) })
+      end,
+      desc = '垂直分割ターミナル',
     },
     {
       ']r',
