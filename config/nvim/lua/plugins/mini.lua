@@ -2,7 +2,7 @@
 -- 小さな独立したプラグインのコレクション
 
 return {
-  'echasnovski/mini.nvim',
+  'nvim-mini/mini.nvim',
   config = function()
     -- Better Around/Inside textobjects
     -- 例: va) - [V]isually select [A]round [)]paren
