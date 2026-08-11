@@ -40,6 +40,10 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   desc = 'Save colorscheme selection for next session',
   group = vim.api.nvim_create_augroup('colorscheme-persist', { clear = true }),
   callback = function()
+    -- ヘッドレス実行（スクリプト・CI等）ではユーザーの選択を上書きしない
+    if #vim.api.nvim_list_uis() == 0 then
+      return
+    end
     local colorscheme = vim.g.colors_name
     if colorscheme then
       local cache_dir = vim.fn.stdpath 'cache'
