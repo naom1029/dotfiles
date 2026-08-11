@@ -106,7 +106,6 @@
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
 | toggleterm.nvim   | ターミナルトグル               | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |
-| memo.nvim     | シンプルなメモ管理             | `<leader>mn` - 新規メモ<br>`<leader>mm` - メモ検索<br>`<leader>md` - 今日の予実メモ              |
 | nvim-rooter   | 自動プロジェクトルート検出     | 自動有効（ファイル開くと git root に cd）                                                    |
 | flash.nvim    | ラベルジャンプ | `s` - ジャンプ<br>`S` - Treesitter 選択                                                  |
 | snacks.nvim (input/picker) | 入力/選択 UI の改善   | 自動有効（vim.ui.input/select を置き換え）                                                   |
@@ -277,7 +276,7 @@
 - `<leader>th` - 水平分割でターミナルを開く
 - `<leader>tv` - 垂直分割でターミナルを開く
 
-#### メモ管理 (memo.nvim)
+#### メモ管理 (自前実装・`lua/config/memo.lua`)
 
 - `<leader>mn` - 新規メモを作成（カテゴリ選択 → タイムスタンプ形式ファイル）
 - `<leader>mm` - メモをファイル名で検索（サブディレクトリ含む）

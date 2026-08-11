@@ -24,6 +24,7 @@ vim.g.have_nerd_font = false
 require('config.options')   -- Vim options
 require('config.keymaps')   -- キーマップ
 require('config.autocmds')  -- Autocommands
+require('config.memo')      -- メモ管理（自前実装）
 require('config.lazy')      -- lazy.nvim & プラグイン
 
 -- vim: ts=2 sts=2 sw=2 et
