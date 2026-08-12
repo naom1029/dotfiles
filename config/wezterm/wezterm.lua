@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 -- 基本設定
 config.automatically_reload_config = true
 config.use_ime = true
-config.font_size = 10.5
+config.font_size = 10.0
 config.color_scheme = "Kanagawa (Gogh)"
 
 -- kitty keyboard protocol は無効のまま
@@ -23,6 +23,15 @@ config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false -- モード表示のため常にタブバーを表示
 config.tab_bar_at_bottom = false -- タブバーを上に配置
+
+-- 上下の余白を削って行数を稼ぐ（既定は上下 0.5cell）。
+-- 左右は既定値のまま明示する（部分指定時の既定維持が未文書のため）。
+config.window_padding = {
+	left = "1cell",
+	right = "1cell",
+	top = 0,
+	bottom = 0,
+}
 
 config.window_frame = {
 	inactive_titlebar_bg = "none",
@@ -71,6 +80,18 @@ config.default_domain = "WSL:Ubuntu"
 -- Launch Menu：起動時の選択肢
 -- ============================================
 config.launch_menu = {
+	-- WSL 側
+	{
+		label = "WSL: Ubuntu",
+		domain = { DomainName = "WSL:Ubuntu" },
+	},
+	{
+		-- herdr は ~/.nix-profile/bin にあるためログインシェル経由で PATH を通す
+		label = "WSL: Ubuntu (herdr)",
+		args = { "bash", "-lc", "herdr" },
+		domain = { DomainName = "WSL:Ubuntu" },
+	},
+	-- Windows 側
 	{
 		label = "Windows PowerShell",
 		args = { "powershell.exe", "-NoLogo" },

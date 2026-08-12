@@ -10,8 +10,7 @@ wezterm.on("toggle-zen-mode", function(window, pane)
 		overrides.font_size = nil
 		overrides.enable_tab_bar = true
 	else
-		-- zen-mode有効化（フォントサイズ16）
-		overrides.font_size = 10.5
+		-- zen-mode有効化（フォントサイズは基本設定を継承する）
 		overrides.enable_tab_bar = false
 	end
 

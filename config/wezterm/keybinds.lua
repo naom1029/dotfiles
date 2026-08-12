@@ -43,6 +43,13 @@ return {
 		},
 		-- コマンドパレット表示
 		{ key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
+		-- 別ターミナルを開く：launch_menu の項目だけに絞ったランチャー
+		-- 既定のランチャーは WSL 一覧・ドメイン・コマンド集まで出るため flags で限定する
+		{
+			key = "o",
+			mods = "LEADER",
+			action = act.ShowLauncherArgs({ flags = "FUZZY|LAUNCH_MENU_ITEMS", title = "Open terminal" }),
+		},
 		-- Tab移動
 		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
@@ -63,6 +70,9 @@ return {
 		-- コピー & 貼り付け
 		{ key = "c", mods = "CTRL|SHIFT", action = act.CopyTo("Clipboard") },
 		{ key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
+
+		-- QuickSelect：URL/パス/gitハッシュ/IP等にラベルを付けて選択（既定の Ctrl+Shift+Space と同等）
+		{ key = "Space", mods = "LEADER", action = act.QuickSelect },
 
 -- Pane作成 leader + r or d
 		{ key = "d", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
