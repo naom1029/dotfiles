@@ -2,9 +2,10 @@
 -- 複数のカラースキームをインストールし、Telescopeで切り替え可能
 
 return {
-  -- kanagawa.nvim (フォールバックのデフォルト)
+  -- kanagawa.nvim (フォールバックのデフォルト。実際に使うのはこれだけなので唯一eager load)
   {
     'rebelot/kanagawa.nvim',
+    lazy = false,
     priority = 1000, -- 最優先で読み込み
     config = function()
       require('kanagawa').setup {
@@ -76,10 +77,10 @@ return {
   },
 
   -- tokyonight.nvim (モダンで視認性が高い)
+  -- 未使用時は遅延ロード。:colorscheme実行時にlazy.nvimが自動でロードする
   {
     'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 900,
+    lazy = true,
     opts = {
       style = 'night', -- night, storm, day, moon
       transparent = true,
@@ -91,8 +92,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    lazy = false,
-    priority = 900,
+    lazy = true,
     opts = {
       flavour = 'mocha', -- latte, frappe, macchiato, mocha
       transparent_background = true,
@@ -102,8 +102,7 @@ return {
   -- gruvbox (クラシックで温かみのある配色)
   {
     'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 900,
+    lazy = true,
     opts = {
       transparent_mode = true,
     },
@@ -113,8 +112,7 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
-    lazy = false,
-    priority = 900,
+    lazy = true,
     opts = {
       variant = 'moon', -- auto, main, moon, dawn
       disable_background = true,
@@ -125,8 +123,7 @@ return {
   {
     'rockyzhang24/arctic.nvim',
     branch = 'v2',
-    lazy = false,
-    priority = 900,
+    lazy = true,
     dependencies = { 'rktjmp/lush.nvim' },
   },
 }

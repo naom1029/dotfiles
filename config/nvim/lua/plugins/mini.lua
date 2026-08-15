@@ -3,6 +3,7 @@
 
 return {
   'nvim-mini/mini.nvim',
+  event = 'VeryLazy',
   config = function()
     -- Better Around/Inside textobjects
     -- 例: va) - [V]isually select [A]round [)]paren
