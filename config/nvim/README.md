@@ -39,7 +39,7 @@
 | mason.nvim      | LSP サーバー管理        | `:Mason` - 管理 UI                                         |
 | nvim-treesitter | 構文解析・ハイライト    | 自動有効                                                   |
 | nvim-ts-autotag | HTML/JSX タグ自動閉じ   | 自動有効                                                   |
-| conform.nvim    | フォーマッター          | `<leader>cf` - フォーマット                                |
+| conform.nvim    | フォーマッター          | 保存時に自動フォーマット                                    |
 | lazydev.nvim    | Neovim Lua 開発サポート | 自動有効                                                   |
 | nvim-treesitter-context | 関数/クラスのコンテキスト固定表示 | `<leader>uc` - トグル                          |
 | aerial.nvim | シンボルアウトライン    | `<leader>vs` - トグル<br>`]a/[a` - シンボル移動            |
@@ -199,9 +199,10 @@
 - `grn` - リネーム / `gra` - コードアクション / `grx` - CodeLens 実行
 - `K` - ホバー / `<C-s>`（挿入モード）- シグネチャヘルプ
 
-**コード編集 ([C]ode グループ)：**
-- `<leader>cf` - コードフォーマット
+**コード編集：**
 - `<leader>vs` - シンボルアウトライン（aerial）
+
+保存（`<C-s>`/`:w`等）で自動フォーマットされるため、手動フォーマットキーは廃止（conform.nvimの`format_on_save`）
 
 **UI トグル ([U]I グループ)：**
 - `<leader>uh` - Inlay Hints トグル
