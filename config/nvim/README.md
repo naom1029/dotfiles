@@ -69,6 +69,30 @@
 - C/C++ (codelldb)
 - Rust (codelldb)
 
+### テスト (neotest)
+
+VSCodeのTestingパネル相当。個々のテストの実行・ツリー表示・デバッグを行う。
+
+| プラグイン | 説明 | 主要キーマップ |
+| --- | --- | --- |
+| neotest | テストランナー統合フレームワーク | `<leader>nt` - 最も近いテストを実行<br>`<leader>nT` - 現在ファイルのテストを実行<br>`<leader>nA` - プロジェクト全体のテストを実行<br>`<leader>nd` - デバッグ実行<br>`<leader>ns` - サマリー(ツリー)をトグル<br>`<leader>no` - 直近の実行結果を表示<br>`<leader>nO` - 出力パネルをトグル |
+
+**対応言語:**
+- Python (neotest-python: pytest/unittest自動判別)
+- Lua (neotest-plenary: plenary busted形式のテスト)
+- C++ (neotest-gtest: GoogleTest)
+- TypeScript/JavaScript (neotest-jest, neotest-vitest)
+
+Rustは見送り（rustaceanvimはLSP管理を丸ごと引き取る仕様のため別途検討）。
+
+**C++(GoogleTest)の実行ファイル自動マッピングについて:**
+
+GoogleTestは事前ビルドされた実行ファイルが必要なため、本来は`:ConfigureGtest`でテストファイルごとに実行ファイルを手動登録する必要がある。`config/nvim/lua/plugins/neotest.lua`の`auto_map_gtest_executables()`が「テストファイル名 == ビルドディレクトリ配下の同名実行ファイル」という規約に従い、テスト実行のたびに自動でマッピングし直す（`~/.local/share/nvim/neotest-gtest/`配下のJSON永続化ファイルを直接更新）。
+
+- ファイルが増えても実行のたびに自動で拾われる
+- プロジェクトが規約と異なる場合は同ファイル内の`gtest_conventions`（`bin_dirs`、`executable_name`）を編集する
+- 自動検出できなかった場合は従来どおり`:ConfigureGtest`で手動登録すればよい（自動マッピングと共存する）
+
 ### ファイル・検索
 
 | プラグイン     | 説明                           | 主要コマンド/キーマップ                                                                  |

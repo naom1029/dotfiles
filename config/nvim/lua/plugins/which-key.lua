@@ -51,6 +51,7 @@ return {
       { '<leader>d', group = '[D]ebug' },
       { '<leader>g', group = '[G]it' },
       { '<leader>m', group = '[M]emo' },
+      { '<leader>n', group = '[N]eotest' },
       { '<leader>p', group = '[P]roject' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]erminal' },
