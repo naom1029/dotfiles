@@ -63,6 +63,9 @@ vim.opt.scrolloff = 10
 
 -- セッションに保存する情報
 -- localoptions が無いとセッション復元後に filetype とハイライトが効かない（auto-session 推奨値）
+-- terminal は入れない: localoptions と併用すると mksession がターミナルバッファに
+-- `setlocal buftype=terminal` を書き出すが、この値は手動設定できず復元時に
+-- E474 で失敗してセッション全体が壊れる
 vim.opt.sessionoptions = {
   'blank',
   'buffers',
@@ -72,7 +75,6 @@ vim.opt.sessionoptions = {
   'tabpages',
   'winsize',
   'winpos',
-  'terminal',
   'localoptions',
 }
 
