@@ -210,6 +210,11 @@ return {
           jumpto = { '<C-i>', 'i' },
         },
       },
+      output = {
+        -- 実行のたびに出力フロートが勝手に出るのを止める。
+        -- 見たいときは<leader>no（ツリー内ならo）で開く
+        open_on_run = false,
+      },
       adapters = {
         require('neotest-python')({
           dap = { justMyCode = false },
