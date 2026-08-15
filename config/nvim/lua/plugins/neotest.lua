@@ -316,5 +316,99 @@ return {
       return canvas
     end
 
+    -- ツリーでカーソルを合わせたテストのコードをフロートでプレビューする
+    -- （Enterで実際に開く前に中身を確認できるようにする）。
+    -- neotestは「カーソル行→テスト位置」の対応を公開APIで提供していないため、
+    -- jumptoのコールバックを流用する。ジャンプ処理の実体である
+    -- lib.ui.open_buf を一時的に差し替えて、ウィンドウを切り替えず
+    -- 対象バッファと行だけを受け取る。
+    local preview_win = nil
+
+    local function close_preview()
+      if preview_win and vim.api.nvim_win_is_valid(preview_win) then
+        vim.api.nvim_win_close(preview_win, true)
+      end
+      preview_win = nil
+    end
+
+    local function capture_position_under_cursor()
+      local ok_lib, lib = pcall(require, 'neotest.lib')
+      if not ok_lib then
+        return nil
+      end
+      local captured
+      local orig_open_buf = lib.ui.open_buf
+      lib.ui.open_buf = function(bufnr, line, col)
+        captured = { buf = bufnr, line = line or 0, col = col or 0 }
+      end
+      for _, map in ipairs(vim.api.nvim_buf_get_keymap(0, 'n')) do
+        if map.callback and map.desc and map.desc:match('^jumpto') then
+          pcall(map.callback)
+          break
+        end
+      end
+      lib.ui.open_buf = orig_open_buf
+      return captured
+    end
+
+    local function show_preview()
+      if vim.bo.filetype ~= 'neotest-summary' then
+        return
+      end
+      local pos = capture_position_under_cursor()
+      -- ディレクトリ行などジャンプ先が無い行ではプレビューを閉じる
+      if not pos or not vim.api.nvim_buf_is_valid(pos.buf) then
+        close_preview()
+        return
+      end
+
+      local width = math.min(math.floor(vim.o.columns * 0.5), 100)
+      local height = math.min(math.floor(vim.o.lines * 0.5), 30)
+      local win_config = {
+        relative = 'editor',
+        width = width,
+        height = height,
+        row = 1,
+        col = vim.o.columns - width - 2,
+        border = 'rounded',
+        title = ' ' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(pos.buf), ':t') .. ' ',
+        title_pos = 'center',
+        focusable = false,
+        noautocmd = true,
+      }
+
+      if preview_win and vim.api.nvim_win_is_valid(preview_win) then
+        vim.api.nvim_win_set_config(preview_win, win_config)
+        vim.api.nvim_win_set_buf(preview_win, pos.buf)
+      else
+        preview_win = vim.api.nvim_open_win(pos.buf, false, win_config)
+      end
+
+      vim.wo[preview_win].number = true
+      vim.wo[preview_win].cursorline = true
+      local line = math.min(pos.line + 1, vim.api.nvim_buf_line_count(pos.buf))
+      pcall(vim.api.nvim_win_set_cursor, preview_win, { line, 0 })
+      vim.api.nvim_win_call(preview_win, function()
+        vim.cmd('normal! zz')
+      end)
+    end
+
+    local group = vim.api.nvim_create_augroup('neotest-summary-preview', { clear = true })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      pattern = 'neotest-summary',
+      callback = function(event)
+        vim.api.nvim_create_autocmd('CursorMoved', {
+          group = group,
+          buffer = event.buf,
+          callback = show_preview,
+        })
+        vim.api.nvim_create_autocmd({ 'BufLeave', 'WinLeave', 'BufWinLeave' }, {
+          group = group,
+          buffer = event.buf,
+          callback = close_preview,
+        })
+      end,
+    })
   end,
 }
