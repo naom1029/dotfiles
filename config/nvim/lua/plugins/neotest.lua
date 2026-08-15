@@ -204,6 +204,11 @@ return {
       -- サマリー(ツリー)を左側に表示（デフォルトは右側）
       summary = {
         open = 'topleft vsplit | vertical resize 50',
+        mappings = {
+          -- Enterは後述のハイブリッド処理で上書きする（展開できる行は展開、
+          -- 末端のテスト行はジャンプ）。常にジャンプしたいとき用に<C-i>も残す
+          jumpto = { '<C-i>', 'i' },
+        },
       },
       adapters = {
         require('neotest-python')({
@@ -270,5 +275,46 @@ return {
     end
 
     require('neotest').setup(opts)
+
+    -- ツリーのEnterをハイブリッドにする:
+    --   展開できる行（ディレクトリ/ファイル/スイート）→ 標準どおり展開・折りたたみ
+    --   末端のテスト行 → そのテストへジャンプ（バッファに開く）
+    -- neotestは「その行にどのアクションが登録されているか」を公開していないため、
+    -- Canvasのadd_mappingを包んで展開可能な行を記録し、描画のたびに
+    -- render_bufferの後で自前のEnterを張り直す。
+    local canvas_module = require('neotest.consumers.summary.canvas')
+    local expandable_lines = {}
+    local orig_canvas_new = canvas_module.new
+    canvas_module.new = function(canvas_config)
+      local canvas = orig_canvas_new(canvas_config)
+      -- 描画ごとにCanvasが作り直されるので、そのタイミングで記録もリセットする
+      expandable_lines = {}
+
+      local orig_add_mapping = canvas.add_mapping
+      canvas.add_mapping = function(self, action, callback, map_opts)
+        if action == 'expand' then
+          expandable_lines[(map_opts and map_opts.line) or self:length()] = true
+        end
+        return orig_add_mapping(self, action, callback, map_opts)
+      end
+
+      local orig_render_buffer = canvas.render_buffer
+      canvas.render_buffer = function(self, buffer)
+        local rendered = orig_render_buffer(self, buffer)
+        vim.keymap.set('n', '<CR>', function()
+          local action = expandable_lines[vim.fn.line('.')] and 'expand' or 'jumpto'
+          for _, map in ipairs(vim.api.nvim_buf_get_keymap(buffer, 'n')) do
+            if map.callback and map.desc and vim.startswith(map.desc, action) then
+              map.callback()
+              return
+            end
+          end
+        end, { buffer = buffer, nowait = true, desc = 'neotest: 展開 or ジャンプ' })
+        return rendered
+      end
+
+      return canvas
+    end
+
   end,
 }
