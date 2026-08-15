@@ -82,6 +82,22 @@ return {
         -- フロートで見たいときは<leader>no（ツリー内ならo）
         open_on_run = false,
       },
+      -- 実行結果を確認できるよう、テストが終わったら下部の出力パネルを自動で開く。
+      -- neotestに自動オープンの設定は無いため、consumersの拡張点で
+      -- 結果イベント（results）を購読して開く。
+      consumers = {
+        auto_open_output_panel = function(client)
+          client.listeners.results = function(_, _, partial)
+            -- partialは実行途中の部分結果なので、完了時だけ開く
+            if partial then
+              return
+            end
+            vim.schedule(function()
+              require('neotest').output_panel.open()
+            end)
+          end
+        end,
+      },
       adapters = {
         require('neotest-python')({
           dap = { justMyCode = false },
