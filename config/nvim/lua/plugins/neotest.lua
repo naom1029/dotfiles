@@ -87,9 +87,22 @@ return {
       -- 結果イベント（results）を購読して開く。
       consumers = {
         auto_open_output_panel = function(client)
-          client.listeners.results = function(_, _, partial)
+          client.listeners.results = function(_, results, partial)
             -- partialは実行途中の部分結果なので、完了時だけ見る
             if partial then
+              return
+            end
+            -- neotest-ctestは ctest を --quiet --output-on-failure で実行するため
+            -- 成功時の出力は空になる。空のパネルを開いても意味がないので、
+            -- 失敗が含まれるときだけ開く（成功はツリーとサインカラムの✓で分かる）
+            local has_failure = false
+            for _, result in pairs(results) do
+              if result.status == 'failed' then
+                has_failure = true
+                break
+              end
+            end
+            if not has_failure then
               return
             end
             vim.schedule(function()
