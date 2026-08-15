@@ -88,7 +88,7 @@ return {
       consumers = {
         auto_open_output_panel = function(client)
           client.listeners.results = function(_, _, partial)
-            -- partialは実行途中の部分結果なので、完了時だけ開く
+            -- partialは実行途中の部分結果なので、完了時だけ見る
             if partial then
               return
             end
@@ -110,6 +110,11 @@ return {
     }
   end,
   config = function(_, opts)
+    -- gtestはパイプ出力だと色を落とすため、失敗時の出力が読みづらくなる。
+    -- Neovimから起動する子プロセスにだけ効かせ、シェルやCIには影響させない。
+    -- （neotest-ctestはRunSpecにenvを渡す口が無いのでvim.env経由にする）
+    vim.env.GTEST_COLOR = 'yes'
+
     -- neotest本体とneotest-jestが非推奨のvim.tbl_flatten()を呼んでおり、
     -- その非推奨警告(vim.deprecate→nvim_echo)が非同期の安全でないコンテキスト
     -- から呼ばれてクラッシュする(E5560)。
