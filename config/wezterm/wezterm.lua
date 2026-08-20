@@ -12,8 +12,21 @@ config.color_scheme = "Kanagawa (Gogh)"
 -- （herdr マルチプレクサが非対応で、有効にすると ESC 等が CSI u 形式になり壊れるため。
 --  参考: https://qiita.com/getty104/items/5e2239edf03fa4d1b4c8）
 
--- フォント設定（WezTerm バンドル Nerd Font）
-config.font = wezterm.font("JetBrains Mono")
+-- フォント設定
+-- 記号は同梱の Symbols Nerd Font ではなく font_dirs の新しい版に解決させる。
+-- 同梱版は nf-dev-yaml (U+E8EB) 等を持たず、Windows へフォントをインストールしても
+-- 同梱版が優先されるため、font_dirs (最優先) に置く必要がある。
+-- 配置は nix/programs/wezterm.nix の activation が行う。
+config.font_dirs = { "fonts" }
+-- CJK フォントもフォールバックに明示する。省略すると CJK が同じシェイプ単位に
+-- 混ざったとき DirectWrite のシステムフォールバックまで降りてしまい、font_dirs の
+-- フォントは Windows に未登録なので「No fonts contain glyphs」警告が出る。
+-- 明示すると解決が WezTerm 内で完結し、グリフの解決結果は変わらないまま警告が消える。
+config.font = wezterm.font_with_fallback({
+	"JetBrains Mono",
+	"Symbols Nerd Font Mono",
+	"Yu Gothic UI",
+})
 
 -- ============================================
 -- ウィンドウ・UI 設定
