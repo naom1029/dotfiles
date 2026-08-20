@@ -4,7 +4,13 @@
 return {
   "iamcco/markdown-preview.nvim",
   ft = { "markdown" },
-  build = "cd app && yarn install",
+  -- 公式配布のビルド済みバイナリを取得する（Node環境に依存しない）。
+  -- 導入済みならバージョン比較で何もしないため再実行しても安全。
+  -- build時点ではプラグインが未ロードでautoload関数を呼べないため、先にロードする。
+  build = function()
+    vim.cmd("Lazy load markdown-preview.nvim")
+    vim.fn["mkdp#util#install_sync"]()
+  end,
   -- plugin/mkdp.vim は読み込み時に s:init() を実行し、その時点の g:mkdp_* を見て
   -- autocmd を登録する。config では手遅れになるため init で設定すること。
   init = function()
