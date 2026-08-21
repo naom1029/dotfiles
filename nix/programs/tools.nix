@@ -28,6 +28,9 @@
     # monitoring
     btop
     lazydocker
+
+    # network
+    sshuttle
   ];
 
   # fzf
