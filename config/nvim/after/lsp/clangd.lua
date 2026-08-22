@@ -10,7 +10,7 @@ return {
   cmd = {
     'clangd',
     '--background-index',
-    '--header-insertion=never',
+    '--header-insertion=iwyu',
     '--clang-tidy',
   },
   -- 優先順位: C/C++プロジェクトマーカー > .git > Makefile
