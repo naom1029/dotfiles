@@ -6,7 +6,11 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 config.use_ime = true
 config.font_size = 10.0
-config.color_scheme = "Kanagawa (Gogh)"
+-- VSCode Dark Modernに統一（Neovim側はarctic.nvimで同じ配色）。
+-- Dark ModernはVSCode側でターミナルのANSI配色を独自定義していないため、
+-- その継承元であるDark+のポート(Gogh)をベースに、エディタ本体の背景/文字色/選択色だけ
+-- Dark Modernの実値（arctic.nvimの移植元と同じ #1F1F1F / #CCCCCC / #264F78）で上書きする。
+config.color_scheme = "Vs Code Dark+ (Gogh)"
 
 -- kitty keyboard protocol は無効のまま
 -- （herdr マルチプレクサが非対応で、有効にすると ESC 等が CSI u 形式になり壊れるため。
@@ -31,8 +35,6 @@ config.font = wezterm.font_with_fallback({
 -- ============================================
 -- ウィンドウ・UI 設定
 -- ============================================
-config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = false -- モード表示のため常にタブバーを表示
 config.tab_bar_at_bottom = false -- タブバーを上に配置
@@ -51,13 +53,15 @@ config.window_frame = {
 	active_titlebar_bg = "none",
 }
 
-config.window_background_gradient = {
-	colors = { "#000000" },
-}
-
 config.show_new_tab_button_in_tab_bar = false
 
 config.colors = {
+	background = "#1F1F1F",
+	foreground = "#CCCCCC",
+	cursor_bg = "#CCCCCC",
+	cursor_border = "#CCCCCC",
+	cursor_fg = "#1F1F1F",
+	selection_bg = "#264F78",
 	tab_bar = {
 		inactive_tab_edge = "none",
 	},

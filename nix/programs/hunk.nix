@@ -21,7 +21,7 @@ in
     package = hunkFixed;
     settings = {
       theme = "auto";
-      transparentBackground = true;
+      transparentBackground = false;
     };
     enableClaudeIntegration = true;
   };

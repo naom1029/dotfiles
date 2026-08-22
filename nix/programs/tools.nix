@@ -61,7 +61,8 @@
   programs.bat = {
     enable = true;
     config = {
-      theme = "TwoDark";
+      # VSCode Dark Modernの前身であるDark+の同梱テーマに統一
+      theme = "Visual Studio Dark+";
     };
   };
 

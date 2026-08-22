@@ -12,19 +12,20 @@
         showNumstatInFilesView = true;
         commandLogSize = 4;
         nerdFontsVersion = "3";
+        # VSCode Dark Modernの配色に統一（Neovim側のarctic.nvimと同じパレット）
         theme = {
-          activeBorderColor = [ "#c4b28a" "bold" ];
-          inactiveBorderColor = [ "#393836" ];
-          searchingActiveBorderColor = [ "#e6c384" "bold" ];
-          optionsTextColor = [ "#7fb4ca" ];
-          selectedLineBgColor = [ "#2d4f67" ];
-          inactiveViewSelectedLineBgColor = [ "#363646" ];
-          defaultFgColor = [ "#c5c9c5" ];
-          unstagedChangesColor = [ "#e46876" ];
-          cherryPickedCommitFgColor = [ "#c5c9c5" ];
-          cherryPickedCommitBgColor = [ "#2d4f67" ];
-          markedBaseCommitFgColor = [ "#c5c9c5" ];
-          markedBaseCommitBgColor = [ "#43436c" ];
+          activeBorderColor = [ "#569CD6" "bold" ];
+          inactiveBorderColor = [ "#454545" ];
+          searchingActiveBorderColor = [ "#DCDCAA" "bold" ];
+          optionsTextColor = [ "#9CDCFE" ];
+          selectedLineBgColor = [ "#264F78" ];
+          inactiveViewSelectedLineBgColor = [ "#3a3d41" ];
+          defaultFgColor = [ "#cccccc" ];
+          unstagedChangesColor = [ "#D16969" ];
+          cherryPickedCommitFgColor = [ "#cccccc" ];
+          cherryPickedCommitBgColor = [ "#264F78" ];
+          markedBaseCommitFgColor = [ "#ffffff" ];
+          markedBaseCommitBgColor = [ "#212d3a" ];
         };
       };
       git = {

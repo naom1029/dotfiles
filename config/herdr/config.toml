@@ -29,9 +29,10 @@ type = "pane"
 command = "lazygit"
 
 [theme]
+# Dark Modern相当のプリセットが無いため、方針どおりcatppuccinに統一
 name = "terminal"
 auto_switch = true
-dark_name = "dracula"
+dark_name = "catppuccin"
 light_name = "catppuccin-latte"
 
 [session]
