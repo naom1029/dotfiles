@@ -47,7 +47,7 @@ return {
     {
       '<leader>ns',
       function()
-        require('neotest').summary.toggle()
+        require('neotest').summary.toggle({ enter = true })
       end,
       desc = 'Test: サマリー(ツリー)をトグル',
     },
@@ -190,19 +190,41 @@ return {
       return canvas
     end
 
-    -- ツリーでカーソルを合わせたテストのコードをフロートでプレビューする
-    -- （Enterで実際に開く前に中身を確認できるようにする）。
+    -- ツリーでカーソルが乗っているテストのコードをフロートでプレビューする
+    -- （VSCodeのTest Explorerのシングルクリック=プレビュータブに相当。
+    -- ホバーだけでは開かず、明示的なキー（p）を押したときだけ表示する。
+    -- 別の行でpを押すと同じプレビューを置き換える＝タブが増え続けない）。
     -- neotestは「カーソル行→テスト位置」の対応を公開APIで提供していないため、
     -- jumptoのコールバックを流用する。ジャンプ処理の実体である
     -- lib.ui.open_buf を一時的に差し替えて、ウィンドウを切り替えず
     -- 対象バッファと行だけを受け取る。
     local preview_win = nil
+    local preview_buf = nil
+    local preview_line = nil
+
+    -- プレビューのためだけに読み込んだバッファ（他のウィンドウに表示されておらず、
+    -- 未編集）は用済みになったら削除する。VSCodeのプレビュータブが実タブに
+    -- 昇格しない限り自動で閉じられるのと同じ挙動。すでに他の場所で開かれている
+    -- バッファ（bufwinidが取れる）や編集中のバッファは対象外にして安全側に倒す。
+    local function cleanup_stale_preview_buf(bufnr)
+      if
+        bufnr
+        and vim.api.nvim_buf_is_valid(bufnr)
+        and vim.fn.bufwinid(bufnr) == -1
+        and not vim.bo[bufnr].modified
+      then
+        pcall(vim.api.nvim_buf_delete, bufnr, { unload = false })
+      end
+    end
 
     local function close_preview()
       if preview_win and vim.api.nvim_win_is_valid(preview_win) then
         vim.api.nvim_win_close(preview_win, true)
       end
       preview_win = nil
+      cleanup_stale_preview_buf(preview_buf)
+      preview_buf = nil
+      preview_line = nil
     end
 
     local function capture_position_under_cursor()
@@ -215,14 +237,40 @@ return {
       lib.ui.open_buf = function(bufnr, line, col)
         captured = { buf = bufnr, line = line or 0, col = col or 0 }
       end
+      -- 本物のjumptoコールバックは対象ファイルを初めて読むとき vim.fn.bufload() で
+      -- BufReadPostを発火させる。その瞬間はまだツリー側がカレントウィンドウのため、
+      -- Neovim組み込みの「最後のカーソル位置へ復元」autocmd（:h restore-cursor）が
+      -- window 0 = ツリー側に対して nvim_win_set_cursor を実行し、ツリーのカーソルを
+      -- 対象ファイルの最終編集行へ飛ばしてしまう。プレビューはただの下見なので
+      -- ここではautocmdを止めて副作用を防ぐ。
+      local saved_eventignore = vim.o.eventignore
+      vim.o.eventignore = 'all'
       for _, map in ipairs(vim.api.nvim_buf_get_keymap(0, 'n')) do
         if map.callback and map.desc and map.desc:match('^jumpto') then
           pcall(map.callback)
           break
         end
       end
+      vim.o.eventignore = saved_eventignore
       lib.ui.open_buf = orig_open_buf
       return captured
+    end
+
+    -- lib.ui.open_bufを差し替えている間はneotest本来の読み込み処理が走らないため、
+    -- ファイルが読み込まれていてもfiletypeが未設定でtreesitterハイライトが
+    -- 起動しないままになる。表示前に明示的に検出・設定してFileTypeを発火させる
+    -- （Enterで実際に開いたときも同じバッファを使うため、ここで直しておけば
+    -- 以後ハイライトが効く）。
+    local function ensure_highlighted(bufnr)
+      if not vim.api.nvim_buf_is_loaded(bufnr) then
+        vim.fn.bufload(bufnr)
+      end
+      if vim.bo[bufnr].filetype == '' then
+        local ft = vim.filetype.match({ buf = bufnr })
+        if ft then
+          vim.bo[bufnr].filetype = ft
+        end
+      end
     end
 
     local function show_preview()
@@ -235,6 +283,23 @@ return {
         close_preview()
         return
       end
+      -- 同じ対象で再度pを押したらトグルで閉じる
+      if
+        preview_win
+        and vim.api.nvim_win_is_valid(preview_win)
+        and preview_buf == pos.buf
+        and preview_line == pos.line
+      then
+        close_preview()
+        return
+      end
+      -- 別のファイルに切り替える場合、直前のプレビュー専用バッファは用済みなので掃除する
+      if preview_buf and preview_buf ~= pos.buf then
+        cleanup_stale_preview_buf(preview_buf)
+      end
+      preview_buf = pos.buf
+      preview_line = pos.line
+      ensure_highlighted(pos.buf)
 
       local width = math.min(math.floor(vim.o.columns * 0.5), 100)
       local height = math.min(math.floor(vim.o.lines * 0.5), 30)
@@ -272,10 +337,10 @@ return {
       group = group,
       pattern = 'neotest-summary',
       callback = function(event)
-        vim.api.nvim_create_autocmd('CursorMoved', {
-          group = group,
+        vim.keymap.set('n', 'p', show_preview, {
           buffer = event.buf,
-          callback = show_preview,
+          nowait = true,
+          desc = 'neotest: プレビュー',
         })
         vim.api.nvim_create_autocmd({ 'BufLeave', 'WinLeave', 'BufWinLeave' }, {
           group = group,
