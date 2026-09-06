@@ -56,11 +56,11 @@ config.window_frame = {
 config.show_new_tab_button_in_tab_bar = false
 
 config.colors = {
-	background = "#1F1F1F",
+	background = "#000000",
 	foreground = "#CCCCCC",
 	cursor_bg = "#CCCCCC",
 	cursor_border = "#CCCCCC",
-	cursor_fg = "#1F1F1F",
+	cursor_fg = "#000000",
 	selection_bg = "#264F78",
 	tab_bar = {
 		inactive_tab_edge = "none",
