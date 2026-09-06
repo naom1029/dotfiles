@@ -12,7 +12,6 @@
     dust
     trash-cli
     vivid
-    zoxide
 
     # python
     uv
