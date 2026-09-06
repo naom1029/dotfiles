@@ -36,6 +36,16 @@
       }
     ];
     settings = {
+      alias = {
+        # 変更済み・未追跡ファイルを複数選択してステージする。
+        adf = ''!f() { git ls-files -m -o --exclude-standard -z | fzf --read0 --print0 --multi | xargs -0 -r git add --; }; f'';
+        # 未ステージの変更・削除を複数選択して復元する。
+        rsf = ''!f() { git diff --name-only -z | fzf --read0 --print0 --multi | xargs -0 -r git restore --; }; f'';
+        # ステージ済みファイルを複数選択し、変更内容を残したまま未ステージへ戻す。
+        unstagef = ''!f() { git diff --cached --name-only -z | fzf --read0 --print0 --multi | xargs -0 -r git restore --staged --; }; f'';
+        # ローカルブランチを複数選択して安全に削除する。
+        deletebranch = ''!f() { git branch --format="%(refname:short)" | fzf --multi | xargs -r git branch -d --; }; f'';
+      };
       core = {
         ignorecase = false;
         editor = "vim";
