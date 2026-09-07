@@ -106,6 +106,7 @@ return {
       'svelte',
       'tailwindcss',
       'ts_ls',
+      'vue_ls',
       'yamlls',
     }
 
