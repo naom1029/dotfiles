@@ -103,9 +103,13 @@ return {
     bigfile = {
       enabled = true,
     },
-    -- quickfile: プラグイン読込前にファイルを即描画して起動を高速化
+    -- quickfile: プラグイン読込前にファイルを即描画して起動を高速化する機能。
+    -- 無効にしているのは、早期描画のために vim.treesitter.start を同期で呼ぶため。
+    -- tree-sitterのクエリコンパイルが重い言語（typescript で176ms）では
+    -- 「速く描画する」どころか起動をまるごとその分遅らせる。
+    -- 実測(中央値): .ts 231ms→165ms、6000行の.ts 375ms→277ms
     quickfile = {
-      enabled = true,
+      enabled = false,
     },
     -- scroll: スムーズスクロール（合わなければ enabled = false に）
     scroll = {

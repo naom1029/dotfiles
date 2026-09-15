@@ -126,7 +126,7 @@ GoogleTestは事前ビルドされた実行ファイルが必要なため、本�
 
 | プラグイン        | 説明                           | 主要コマンド/キーマップ                                                                      |
 | ----------------- | ------------------------------ | -------------------------------------------------------------------------------------------- |
-| snacks.nvim       | QoL 機能の詰め合わせ           | `<leader>.` - ダッシュボード<br>`]r`/`[r` - 同一シンボル参照へジャンプ（words）<br>その他: terminal, bigfile, quickfile, scroll, rename(neo-tree/oil 連携) を有効化 |
+| snacks.nvim       | QoL 機能の詰め合わせ           | `<leader>.` - ダッシュボード<br>`]r`/`[r` - 同一シンボル参照へジャンプ（words）<br>その他: terminal, bigfile, scroll, rename(neo-tree/oil 連携) を有効化<br>quickfile は起動を遅くするため無効（理由は snacks.lua のコメント参照） |
 | mini.nvim         | 多機能ユーティリティ           | textobjects、statusline 等                                                                   |
 | nvim-surround     | テキスト囲み操作               | `ys{motion}{char}` - 囲む<br>`ds{char}` - 削除<br>`cs{old}{new}` - 変更                      |
 | snacks.nvim (terminal) | ターミナルトグル          | `<C-\>` - トグル（下部）<br>`<leader>tf` - フローティング<br>`<leader>th/tv` - 水平/垂直分割 |

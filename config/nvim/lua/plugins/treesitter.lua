@@ -52,12 +52,36 @@ return {
           return
         end
         local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
-        if lang and pcall(vim.treesitter.start, buf, lang) then
-          -- indentsクエリを持たない言語（diff, vimdoc等）で差し替えると
-          -- インデントが常に0になるため、クエリがある場合のみ有効化する
-          if vim.treesitter.query.get(lang, 'indents') then
-            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        if not lang then
+          return
+        end
+        local function start()
+          if not vim.api.nvim_buf_is_valid(buf) then
+            return
           end
+          if pcall(vim.treesitter.start, buf, lang) then
+            -- indentsクエリを持たない言語（diff, vimdoc等）で差し替えると
+            -- インデントが常に0になるため、クエリがある場合のみ有効化する
+            if vim.treesitter.query.get(lang, 'indents') then
+              vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+          end
+        end
+
+        -- tree-sitterのクエリコンパイルは言語ごとに一度だけ数十〜百数十ms かかる
+        -- （typescript は injections 90ms + highlights 73ms + indents 13ms）。
+        -- 起動時の FileType はバッファ読み込み経路で発火するため、ここで同期実行すると
+        -- そのまま起動時間に乗る。vim.schedule では起動中にイベントループが回された
+        -- タイミングで実行されてしまい効果がないので、VimEnter まで待たせる。
+        if vim.v.vim_did_enter == 1 then
+          start()
+        else
+          vim.api.nvim_create_autocmd('VimEnter', {
+            once = true,
+            callback = function()
+              vim.schedule(start)
+            end,
+          })
         end
       end,
     })
