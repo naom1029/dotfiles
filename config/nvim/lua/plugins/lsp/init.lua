@@ -99,7 +99,6 @@ return {
       'lua_ls',
       'markdown_oxide',
       'marksman',
-      'nginx_language_server',
       'pyright',
       'ruff',
       'rust_analyzer',
