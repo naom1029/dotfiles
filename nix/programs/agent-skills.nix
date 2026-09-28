@@ -4,7 +4,7 @@ let
   # nix管理ツールが上流ソースに同梱している agent skill。
   # 本体パッケージと同一バージョンのソースから取得するため、常にツールとスキルが揃う。
   toolSkills = {
-    herdr = "${pkgs.herdr.src}/SKILL.md";
+    herdr = "${pkgs.herdr.src}/skills/herdr/SKILL.md";
     gh = "${pkgs.gh.src}/skills/gh/SKILL.md";
     gh-skill = "${pkgs.gh.src}/skills/gh-skill/SKILL.md";
   };
