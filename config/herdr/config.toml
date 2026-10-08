@@ -70,7 +70,9 @@ claude = [
 ]
 
 [ui.toast]
-delivery = "system"
+# WSLにはWindowsへ橋渡しする通知デーモンが無く、systemだと何も出ない。
+# 外側のWezTerm(Windows側)に通知を任せるとWindowsのトースト通知になる。
+delivery = "terminal"
 
 [ui.sound]
 enabled = false
