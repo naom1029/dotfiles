@@ -87,44 +87,57 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 -- ============================================
--- デフォルトドメイン（WSL）
+-- デフォルトドメイン
 -- ============================================
--- WSL ドメインを使うことで、分割時に同じディレクトリで開く
--- ディストロ名は wsl -l -v で確認可能
-config.default_domain = "WSL:Ubuntu"
+-- WSL のディストロ名は環境ごとに異なるため、WezTerm が検出した一覧を使う。
+-- WSL がない Windows 環境ではローカルの Windows PowerShell にフォールバックする。
+local is_windows = wezterm.target_triple:find("windows") ~= nil
+local wsl_domains = is_windows and wezterm.default_wsl_domains() or {}
+local default_wsl = wsl_domains[1]
+
+if default_wsl then
+	config.default_domain = default_wsl.name
+elseif is_windows then
+	config.default_domain = "local"
+	config.default_prog = { "powershell.exe", "-NoLogo" }
+end
 
 -- ============================================
 -- Launch Menu：起動時の選択肢
 -- ============================================
-config.launch_menu = {
-	-- WSL 側
-	{
-		label = "WSL: Ubuntu",
-		domain = { DomainName = "WSL:Ubuntu" },
-	},
-	{
+config.launch_menu = {}
+
+for _, domain in ipairs(wsl_domains) do
+	table.insert(config.launch_menu, {
+		label = domain.name,
+		domain = { DomainName = domain.name },
+	})
+	table.insert(config.launch_menu, {
 		-- herdr は ~/.nix-profile/bin にあるためログインシェル経由で PATH を通す
-		label = "WSL: Ubuntu (herdr)",
+		label = domain.name .. " (herdr)",
 		args = { "bash", "-lc", "herdr" },
-		domain = { DomainName = "WSL:Ubuntu" },
-	},
+		domain = { DomainName = domain.name },
+	})
+end
+
+if is_windows then
 	-- Windows 側
-	{
+	table.insert(config.launch_menu, {
 		label = "Windows PowerShell",
 		args = { "powershell.exe", "-NoLogo" },
 		domain = { DomainName = "local" },
-	},
-	{
+	})
+	table.insert(config.launch_menu, {
 		label = "PowerShell 7",
 		args = { "pwsh.exe", "-NoLogo" },
 		domain = { DomainName = "local" },
-	},
-	{
+	})
+	table.insert(config.launch_menu, {
 		label = "Command Prompt",
 		args = { "cmd.exe" },
 		domain = { DomainName = "local" },
-	},
-}
+	})
+end
 
 -- ============================================
 -- キーバインド設定を読み込み

@@ -56,7 +56,7 @@ return {
 		-- Tab入れ替え
 		{ key = "{", mods = "LEADER", action = act({ MoveTabRelative = -1 }) },
 		-- Tab新規作成
-		{ key = "t", mods = "CTRL", action = act({ SpawnTab = { DomainName = "WSL:Ubuntu" } }) },
+		{ key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain") },
 		-- Tabを閉じる
 		{ key = "w", mods = "CTRL", action = act({ CloseCurrentTab = { confirm = true } }) },
 		{ key = "}", mods = "LEADER", action = act({ MoveTabRelative = 1 }) },
