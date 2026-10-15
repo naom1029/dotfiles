@@ -15,13 +15,11 @@
       ll = "eza -hlF";
       la = "eza -hlA";
       lt = "eza --tree";
-      lg = "eza -hlFg";
       l = "eza -F";
       g = "ghqcd";
       wt = "wtcd";
       memo = "nvim +MemoToday";
       rm = "trash-put";
-      mkcd = "mkdir -p $1 && cd $1";
     };
     bashrcExtra = ''
       # Nix (bashrc先頭で読み込み、Nixパッケージをapt版より優先)
