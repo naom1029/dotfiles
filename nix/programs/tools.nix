@@ -49,6 +49,10 @@
     fileWidget.options = [
       "--preview 'bat --color=always --style=header,grid --line-range :100 {}'"
     ];
+    changeDirWidget.command = "fd --type d --exclude node_modules";
+    changeDirWidget.options = [
+      "--preview 'eza --tree --level=2 --color=always --icons {}'"
+    ];
     historyWidget.options = [
       "--preview 'echo {}'"
       "--preview-window down:3:hidden:wrap"

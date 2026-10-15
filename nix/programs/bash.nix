@@ -3,9 +3,12 @@
 {
   programs.bash = {
     enable = true;
-    historyControl = [ "ignoreboth" ];
-    historySize = 1000;
-    historyFileSize = 2000;
+    historyControl = [
+      "ignoreboth"
+      "erasedups"
+    ];
+    historySize = 100000;
+    historyFileSize = 100000;
     shellOptions = [
       "histappend"
       "checkwinsize"
@@ -73,6 +76,10 @@
       if [[ "$PROMPT_COMMAND" != *__wezterm_osc7* ]]; then
         PROMPT_COMMAND="__wezterm_osc7''${PROMPT_COMMAND:+;''${PROMPT_COMMAND}}"
       fi
+
+      if [[ "$PROMPT_COMMAND" != *"history -a"* ]]; then
+        PROMPT_COMMAND="history -a''${PROMPT_COMMAND:+;''${PROMPT_COMMAND}}"
+      fi
     '';
   };
 
@@ -83,6 +90,10 @@
       show-mode-in-prompt = true;
       vi-ins-mode-string = "\\1\\e[6 q\\2(ins)";
       vi-cmd-mode-string = "\\1\\e[2 q\\2(cmd)";
+      completion-ignore-case = true;
+      show-all-if-ambiguous = true;
+      colored-stats = true;
+      mark-symlinked-directories = true;
     };
     extraConfig = ''
       # vi insert mode でも Ctrl+A/Ctrl+E で行頭/行末移動
